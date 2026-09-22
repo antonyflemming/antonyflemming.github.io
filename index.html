@@ -1,0 +1,2322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#e8dfcb" />
+    <link rel="icon" href="data:," />
+    <title>Antony Flemming — Tattoo Artist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Oswald:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --paper: #f3efe2;
+        --paper-deep: #e8dfcb;
+        --ink: #11100f;
+        --muted: #4c463d;
+        --gold: #a8780d;
+        --gold-soft: #c49b45;
+        --red: #a50f0c;
+        --red-deep: #7f0907;
+        --button-ink: #fffaf0;
+        --shadow: rgba(53, 35, 13, 0.2);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* Keep the flyer artwork cream in system dark mode. */
+          --paper: #f3efe2;
+          --paper-deep: #e8dfcb;
+          --ink: #11100f;
+          --muted: #4c463d;
+          --gold: #a8780d;
+          --gold-soft: #c49b45;
+          --red: #a50f0c;
+          --red-deep: #7f0907;
+          --button-ink: #fffaf0;
+          --shadow: rgba(53, 35, 13, 0.2);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        min-height: 100%;
+        background: var(--paper-deep);
+      }
+
+      body {
+        margin: 0;
+        min-width: 0;
+        min-height: 100svh;
+        background:
+          radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--gold) 6%, transparent) 0 1px, transparent 1.4px) 0 0 / 11px 11px,
+          var(--paper-deep);
+        color: var(--ink);
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { -webkit-tap-highlight-color: transparent; }
+
+      .page {
+        width: min(100%, 570px);
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: max(34px, env(safe-area-inset-top)) 38px max(34px, env(safe-area-inset-bottom));
+        background:
+          linear-gradient(90deg, color-mix(in srgb, var(--gold) 7%, transparent), transparent 8%, transparent 92%, color-mix(in srgb, var(--gold) 7%, transparent)),
+          var(--paper);
+        box-shadow: 0 0 70px var(--shadow);
+        position: relative;
+        overflow: clip;
+      }
+
+      .page::before,
+      .page::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .page::before {
+        inset: 15px;
+        border: 3px solid var(--gold);
+      }
+
+      .page::after {
+        inset: 22px;
+        border: 1px solid var(--gold);
+      }
+
+      .page > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .identity {
+        text-align: center;
+        padding: 5px 0 18px;
+      }
+
+      .mark {
+        width: min(38vw, 174px);
+        margin: 0 auto 10px;
+        display: grid;
+        place-items: center;
+      }
+
+      .mark img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2rem, 8.5vw, 3rem);
+        line-height: 0.9;
+        letter-spacing: -0.045em;
+        text-transform: uppercase;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .meta {
+        margin: 11px 0 0;
+        color: var(--ink);
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 0.98rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .rule {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 19px;
+        color: var(--gold);
+      }
+
+      .rule::before,
+      .rule::after {
+        content: "";
+        height: 2px;
+        flex: 1;
+        background: var(--gold);
+      }
+
+      .rule svg {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+      }
+
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin: 0 0 24px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--gold-soft);
+      }
+
+      .tab-button {
+        position: relative;
+        min-width: 0;
+        min-height: 46px;
+        padding: 11px 2px 10px;
+        color: var(--muted);
+        background: transparent;
+        border: 0;
+        font-family: "Oswald", sans-serif;
+        font-size: 0.64rem;
+        font-weight: 400;
+        letter-spacing: 0.055em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .tab-button::after {
+        content: "";
+        position: absolute;
+        right: 12px;
+        bottom: -1px;
+        left: 12px;
+        height: 3px;
+        background: transparent;
+      }
+
+      .tab-button[aria-selected="true"] {
+        color: var(--gold);
+      }
+
+      .tab-button[aria-selected="true"]::after {
+        background: var(--gold);
+      }
+
+      .tab-button:nth-child(n + 5) { border-top: 1px solid var(--gold-soft); }
+      .tab-button:hover { color: var(--red); }
+      .tab-panel[hidden] { display: none; }
+
+      .booking {
+        padding: 0 5px 24px;
+        text-align: center;
+      }
+
+      .booking-label {
+        margin: 0 0 4px;
+        color: var(--gold);
+        font-family: "Oswald", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 300;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .booking h2 {
+        margin: 0 auto 10px;
+        max-width: 450px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3.05rem, 13.5vw, 4.8rem);
+        line-height: 0.84;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+
+      .availability {
+        max-width: 410px;
+        margin: 0 auto 18px;
+        color: var(--ink);
+        font-size: 1.18rem;
+        line-height: 1.28;
+      }
+
+      .availability strong {
+        color: var(--red);
+        font-weight: 600;
+      }
+
+      .email {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto 17px;
+        color: var(--ink);
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: clamp(1rem, 4.35vw, 1.28rem);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+      }
+
+      .primary-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 58px;
+        width: min(100%, 390px);
+        margin: 0 auto;
+        padding: 13px 18px;
+        background: var(--red);
+        color: var(--button-ink);
+        text-decoration: none;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border: 2px solid var(--gold);
+        outline: 1px solid var(--red);
+        outline-offset: 3px;
+        transition: background-color 150ms ease, transform 150ms ease;
+      }
+
+      .primary-action:hover { background: var(--red-deep); transform: translateY(-2px); }
+      .primary-action:active { transform: translateY(1px); }
+
+      .primary-action svg,
+      .link-icon { width: 21px; height: 21px; flex: 0 0 auto; }
+
+      .booking-note {
+        margin: 18px auto 0;
+        max-width: 380px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.25;
+      }
+
+      .booking-note strong { color: var(--ink); font-weight: 600; }
+
+      .about {
+        margin: 27px 0 0;
+        padding-top: 22px;
+        border-top: 2px solid var(--gold);
+      }
+
+      .about h2 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.8rem, 12vw, 4.25rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 0.9;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .about .rule { margin: 13px 0 18px; }
+
+      .about-copy {
+        padding: 0 5px 5px;
+      }
+
+      .about-copy p {
+        margin: 0;
+        color: var(--ink);
+        font-size: 1.06rem;
+        line-height: 1.48;
+      }
+
+      .about-copy p + p { margin-top: 18px; }
+
+      .about-copy a {
+        color: var(--gold);
+        text-decoration-color: var(--red);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
+      .about-copy a:hover { color: var(--red); }
+
+      .about-copy p:first-child {
+        color: var(--red);
+        font-size: 1.19rem;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      .links {
+        display: grid;
+        border-top: 2px solid var(--gold);
+      }
+
+      .link-card {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 38px minmax(0, 1fr) 20px;
+        align-items: center;
+        gap: 12px;
+        min-height: 69px;
+        padding: 12px 3px;
+        color: var(--ink);
+        border-bottom: 1px solid var(--gold);
+        text-decoration: none;
+        transition: color 150ms ease, background-color 150ms ease, padding 150ms ease;
+      }
+
+      .link-card:hover {
+        color: var(--red);
+        background: color-mix(in srgb, var(--gold) 8%, transparent);
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .icon-frame {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        color: var(--red);
+        border: 1px solid var(--gold);
+        transform: rotate(45deg);
+      }
+
+      .icon-frame svg { transform: rotate(-45deg); }
+      .link-copy { min-width: 0; }
+
+      .link-title {
+        display: block;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.28rem;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: 0.035em;
+        text-transform: uppercase;
+      }
+
+      .link-detail {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.1;
+      }
+
+      .arrow {
+        width: 20px;
+        height: 20px;
+        justify-self: end;
+        color: var(--red);
+      }
+
+      .work-showcase {
+        margin: 27px 0 0;
+        padding-top: 22px;
+        border-top: 2px solid var(--gold);
+      }
+
+      .slideshow {
+        position: relative;
+        touch-action: pan-y;
+      }
+
+      .slideshow-frame {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        background: var(--ink);
+        border: 3px solid var(--gold);
+        outline: 1px solid var(--gold);
+        outline-offset: 4px;
+      }
+
+      .work-slide {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 220ms ease;
+      }
+
+      .work-slide.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .work-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .slide-controls {
+        display: grid;
+        grid-template-columns: 38px minmax(0, 1fr) 38px;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+      }
+
+      .slide-arrow {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        padding: 0;
+        color: var(--red);
+        background: transparent;
+        border: 1px solid var(--gold);
+        cursor: pointer;
+      }
+
+      .slide-arrow:hover { background: color-mix(in srgb, var(--gold) 10%, transparent); }
+      .slide-arrow svg { width: 20px; height: 20px; }
+
+      .slide-dots {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .slide-dot {
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        background: transparent;
+        border: 1px solid var(--gold);
+        transform: rotate(45deg);
+        cursor: pointer;
+      }
+
+      .slide-dot[aria-current="true"] { background: var(--red); border-color: var(--red); }
+
+      .slide-count {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-family: "Oswald", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 300;
+        letter-spacing: 0.12em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .career-film {
+        margin: 27px 0 0;
+        padding-top: 22px;
+        border-top: 2px solid var(--gold);
+        text-align: center;
+      }
+
+      .career-film h2 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.2rem, 10vw, 3.35rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .career-film p {
+        margin: 9px auto 17px;
+        max-width: 390px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.25;
+      }
+
+      .career-film iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: var(--ink);
+        border: 3px solid var(--gold);
+        outline: 1px solid var(--gold);
+        outline-offset: 4px;
+      }
+
+      .featured-duration {
+        display: block;
+        margin: -7px 0 17px;
+        color: var(--gold);
+        font-size: 0.82rem;
+        font-weight: 400;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .video-directory {
+        margin-top: 32px;
+        text-align: left;
+      }
+
+      .video-group + .video-group { margin-top: 29px; }
+
+      .video-group h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 8px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.7rem, 7vw, 2.15rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .video-group h3::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--gold);
+      }
+
+      .video-list {
+        display: grid;
+        border-top: 1px solid var(--gold);
+      }
+
+      .video-card {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 13px;
+        padding: 15px 5px 16px;
+        color: var(--ink);
+        border-bottom: 1px solid var(--gold);
+        text-decoration: none;
+        transition: background-color 150ms ease, padding 150ms ease;
+      }
+
+      .video-card:hover {
+        padding-left: 10px;
+        padding-right: 10px;
+        background: color-mix(in srgb, var(--gold) 8%, transparent);
+      }
+
+      .video-title {
+        min-width: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        line-height: 1.02;
+        text-transform: uppercase;
+        overflow-wrap: anywhere;
+      }
+
+      .video-duration {
+        align-self: start;
+        color: var(--gold);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        line-height: 1.2;
+        text-align: right;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .video-description {
+        grid-column: 1 / -1;
+        margin-top: 7px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.28;
+      }
+
+      .video-watch {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 9px;
+        color: var(--ink);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .video-watch svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .video-channel-link { margin-top: 28px; }
+
+      .press {
+        margin: 27px 0 0;
+        padding-top: 22px;
+        border-top: 2px solid var(--gold);
+      }
+
+      .press h2 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.8rem, 12vw, 4.25rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 0.9;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .press .rule {
+        margin: 13px 0 7px;
+      }
+
+      .press-group { margin-top: 29px; }
+
+      .press-group h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 8px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.7rem, 7vw, 2.15rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .press-group h3::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--gold);
+      }
+
+      .press-list {
+        display: grid;
+        border-top: 1px solid var(--gold);
+      }
+
+      .press-card {
+        display: block;
+        min-width: 0;
+        padding: 17px 5px 18px;
+        color: var(--ink);
+        border-bottom: 1px solid var(--gold);
+        text-decoration: none;
+        transition: background-color 150ms ease, padding 150ms ease;
+      }
+
+      .press-card:hover {
+        padding-left: 10px;
+        padding-right: 10px;
+        background: color-mix(in srgb, var(--gold) 8%, transparent);
+      }
+
+      .press-publication {
+        display: block;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 300;
+        letter-spacing: 0.17em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .press-title {
+        display: block;
+        margin-top: 5px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1.02;
+        text-transform: uppercase;
+      }
+
+      .press-date {
+        display: block;
+        margin-top: 7px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .press-description {
+        display: block;
+        margin-top: 6px;
+        color: var(--ink);
+        font-size: 1.02rem;
+        font-weight: 300;
+        line-height: 1.3;
+      }
+
+      .reviews,
+      .merch,
+      .aftercare {
+        margin: 27px 0 0;
+        padding-top: 22px;
+        border-top: 2px solid var(--gold);
+      }
+
+      .reviews h2,
+      .merch h2,
+      .aftercare h2 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.8rem, 12vw, 4.25rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 0.9;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .reviews .rule,
+      .merch .rule,
+      .aftercare .rule { margin: 13px 0 12px; }
+
+      .review-summary {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: center;
+        gap: 16px;
+        padding: 7px 5px 20px;
+        border-bottom: 1px solid var(--gold);
+      }
+
+      .review-score {
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.25rem;
+        font-weight: 800;
+        line-height: 0.85;
+      }
+
+      .review-stars {
+        color: var(--gold);
+        font-size: 1.15rem;
+        letter-spacing: 0.08em;
+        line-height: 1;
+      }
+
+      .review-total {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .review-list { display: grid; }
+
+      .review-card {
+        padding: 18px 5px;
+        border-bottom: 1px solid var(--gold);
+      }
+
+      .review-card blockquote {
+        margin: 0;
+        color: var(--ink);
+        font-size: 1.08rem;
+        line-height: 1.35;
+      }
+
+      .review-card cite {
+        display: block;
+        margin-top: 10px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+        font-style: normal;
+        font-weight: 800;
+        letter-spacing: 0.035em;
+        text-transform: uppercase;
+      }
+
+      .review-meta {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .reviews-link { margin-top: 24px; }
+      .merch-intro {
+        max-width: 380px;
+        margin: 0 auto 18px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.3;
+        text-align: center;
+      }
+
+      .print-list {
+        display: grid;
+        border-top: 2px solid var(--gold);
+      }
+
+      .print-card {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 124px minmax(0, 1fr);
+        column-gap: 18px;
+        align-items: start;
+        padding: 18px 5px 20px;
+        border-bottom: 1px solid var(--gold);
+      }
+
+      .print-art {
+        grid-row: 1 / span 2;
+        display: block;
+        width: 100%;
+        height: 174px;
+        object-fit: contain;
+        background: #fff;
+        border: 1px solid var(--gold);
+      }
+
+      .print-info { min-width: 0; }
+
+      .print-name {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.7rem, 7vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .print-options {
+        display: grid;
+        gap: 4px;
+        margin: 9px 0 0;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.25;
+      }
+
+      .print-options span {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .print-options strong {
+        color: var(--gold);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .print-buy {
+        grid-column: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        min-height: 45px;
+        margin-top: 14px;
+        padding: 10px 12px;
+        color: var(--button-ink);
+        background: var(--red);
+        border: 1px solid var(--gold);
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 150ms ease;
+      }
+
+      .print-buy:hover { background: var(--red-deep); }
+      .print-buy svg { width: 18px; height: 18px; flex: 0 0 auto; }
+
+      .merch-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0 0 22px;
+        border-top: 1px solid var(--gold);
+        border-bottom: 1px solid var(--gold);
+      }
+
+      .merch-tab-button {
+        position: relative;
+        min-height: 48px;
+        padding: 10px 12px;
+        color: var(--muted);
+        background: transparent;
+        border: 0;
+        font-family: "Oswald", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .merch-tab-button + .merch-tab-button { border-left: 1px solid var(--gold); }
+      .merch-tab-button[aria-selected="true"] { color: var(--red); background: color-mix(in srgb, var(--gold) 8%, transparent); }
+      .merch-tab-button[aria-selected="true"]::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        bottom: -1px;
+        left: 18px;
+        height: 3px;
+        background: var(--gold);
+      }
+
+      .merch-subpanel[hidden],
+      .aftercare-subpanel[hidden] { display: none; }
+
+      .shop-merch {
+        margin-top: 0;
+      }
+
+      .shop-merch h3 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 10px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .shop-merch h3::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--gold);
+      }
+
+      .merch-product-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--gold);
+      }
+
+      .merch-product {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-content: space-between;
+        gap: 12px;
+        min-height: 112px;
+        padding: 15px 12px;
+        color: var(--ink);
+        border-bottom: 1px solid var(--gold);
+        text-decoration: none;
+        transition: background-color 150ms ease;
+      }
+
+      .merch-product:nth-child(odd) { border-right: 1px solid var(--gold); }
+      .merch-product:hover { background: color-mix(in srgb, var(--gold) 8%, transparent); }
+
+      .merch-product-image {
+        grid-column: 1 / -1;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: contain;
+        background: #f7f3e9;
+        border: 1px solid var(--gold-soft);
+      }
+
+      .merch-product-name {
+        grid-column: 1 / -1;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.28rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        line-height: 1.02;
+        text-transform: uppercase;
+      }
+
+      .merch-product-price {
+        align-self: end;
+        color: var(--gold);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .merch-product-buy {
+        align-self: end;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--ink);
+        font-size: 0.72rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .merch-product-buy svg { width: 15px; height: 15px; }
+      .merch-links { margin-top: 24px; }
+
+      .aftercare-intro {
+        max-width: 390px;
+        margin: 0 auto 24px;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.3;
+        text-align: center;
+      }
+
+      .care-section {
+        padding: 22px 5px 24px;
+        border-top: 1px solid var(--gold);
+      }
+
+      .care-section h3,
+      .products-soon h3 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 13px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .care-section h3::after,
+      .products-soon h3::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--gold);
+      }
+
+      .care-section p {
+        margin: 0;
+        color: var(--ink);
+        font-size: 1.06rem;
+        line-height: 1.42;
+      }
+
+      .care-section p + p { margin-top: 12px; }
+
+      .care-warning {
+        color: var(--red) !important;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .care-steps {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: care-step;
+      }
+
+      .care-steps li {
+        position: relative;
+        min-height: 42px;
+        padding: 0 0 17px 48px;
+        color: var(--ink);
+        counter-increment: care-step;
+        font-size: 1.04rem;
+        line-height: 1.4;
+      }
+
+      .care-steps li + li { padding-top: 1px; }
+
+      .care-steps li::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 0;
+        width: 31px;
+        height: 31px;
+        display: grid;
+        place-items: center;
+        color: var(--red);
+        border: 1px solid var(--gold);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        line-height: 1;
+        transform: rotate(45deg);
+      }
+
+      .care-steps li::after {
+        content: counter(care-step);
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 31px;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .healing-note {
+        padding: 21px 5px 23px;
+        border-top: 2px solid var(--gold);
+        border-bottom: 1px solid var(--gold);
+        text-align: center;
+      }
+
+      .healing-note p {
+        margin: 0 auto;
+        max-width: 405px;
+        color: var(--ink);
+        font-size: 1.08rem;
+        line-height: 1.36;
+      }
+
+      .healing-note p + p { margin-top: 14px; }
+
+      .healing-note strong {
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+        text-transform: uppercase;
+      }
+
+      .healing-note a {
+        color: var(--ink);
+        text-underline-offset: 3px;
+      }
+
+      .products-soon { padding: 4px 5px 28px; }
+
+      .products-by {
+        margin: -3px 0 17px;
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-weight: 300;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .coming-product-list { border-top: 1px solid var(--gold); }
+
+      .coming-product {
+        display: grid;
+        grid-template-columns: 146px minmax(0, 1fr);
+        gap: 6px 17px;
+        align-items: start;
+        padding: 18px 3px 20px;
+        border-bottom: 1px solid var(--gold);
+      }
+
+      .coming-product-image {
+        grid-column: 1;
+        grid-row: 1 / span 6;
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border: 1px solid var(--gold-soft);
+      }
+
+      .coming-product-status {
+        grid-column: 2;
+        width: fit-content;
+        margin-bottom: 2px;
+        padding: 4px 7px 3px;
+        color: var(--paper);
+        background: var(--gold);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .coming-product-name {
+        grid-column: 2;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.55rem, 6vw, 1.95rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .coming-product-type {
+        grid-column: 2;
+        color: var(--ink);
+        font-size: 0.82rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .coming-product-tagline {
+        grid-column: 2;
+        color: var(--muted);
+        font-size: 1rem;
+        font-style: italic;
+        line-height: 1.25;
+      }
+
+      .coming-product-details {
+        grid-column: 2;
+        margin: 2px 0 0;
+        color: var(--ink);
+        font-size: 0.91rem;
+        line-height: 1.38;
+      }
+
+      .coming-product-details strong {
+        color: var(--gold);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 23px 0 2px;
+        color: var(--red);
+        font-family: "Oswald", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 300;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .footer::before,
+      .footer::after {
+        content: "";
+        width: 32px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 520px) {
+        .tab-button { font-size: 0.7rem; letter-spacing: 0.075em; }
+      }
+
+      @media (max-width: 420px) {
+        .page { padding-left: 34px; padding-right: 34px; }
+        .page::before { inset: 11px; }
+        .page::after { inset: 17px; }
+        .identity { padding-top: 2px; }
+        .booking { padding-left: 0; padding-right: 0; }
+        .print-card { grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; }
+        .print-art { height: 152px; }
+        .merch-product-list { grid-template-columns: 1fr; }
+        .merch-product { min-height: 96px; padding-left: 5px; padding-right: 5px; }
+        .merch-product:nth-child(odd) { border-right: 0; }
+        .coming-product { grid-template-columns: 108px minmax(0, 1fr); gap: 6px 13px; }
+        .coming-product-details { font-size: 0.87rem; }
+      }
+
+      @media (max-width: 350px) {
+        .page { padding-left: 27px; padding-right: 27px; }
+        .page::after { inset: 16px; }
+        h1 { font-size: 2.35rem; }
+        .meta { font-size: 0.84rem; letter-spacing: 0.1em; }
+        .booking h2 { font-size: 2.75rem; }
+        .link-card { gap: 10px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="identity">
+        <div class="mark">
+          <img src="assets/logo-6.png" alt="Rose and heart emblem with the number six" />
+        </div>
+        <h1>Antony Flemming</h1>
+        <p class="meta">Tattoo artist&nbsp; · &nbsp;Six &amp; Grace&nbsp; · &nbsp;Calgary</p>
+      </header>
+
+      <div class="rule" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+      </div>
+
+      <nav class="tabs" role="tablist" aria-label="Page sections">
+        <button class="tab-button" id="tab-bookings" type="button" role="tab" aria-selected="true" aria-controls="panel-bookings">Bookings</button>
+        <button class="tab-button" id="tab-about" type="button" role="tab" aria-selected="false" aria-controls="panel-about" tabindex="-1">About</button>
+        <button class="tab-button" id="tab-portfolio" type="button" role="tab" aria-selected="false" aria-controls="panel-portfolio" tabindex="-1">Portfolio</button>
+        <button class="tab-button" id="tab-film" type="button" role="tab" aria-selected="false" aria-controls="panel-film" tabindex="-1">Film</button>
+        <button class="tab-button" id="tab-press" type="button" role="tab" aria-selected="false" aria-controls="panel-press" tabindex="-1">Press</button>
+        <button class="tab-button" id="tab-reviews" type="button" role="tab" aria-selected="false" aria-controls="panel-reviews" tabindex="-1">Reviews</button>
+        <button class="tab-button" id="tab-merch" type="button" role="tab" aria-selected="false" aria-controls="panel-merch" tabindex="-1">Merch</button>
+        <button class="tab-button" id="tab-aftercare" type="button" role="tab" aria-selected="false" aria-controls="panel-aftercare" tabindex="-1">Aftercare</button>
+      </nav>
+
+      <div class="tab-panel" id="panel-bookings" role="tabpanel" aria-labelledby="tab-bookings">
+        <section class="booking" aria-labelledby="booking-title">
+          <p class="booking-label">Booking enquiries</p>
+          <h2 id="booking-title">Books currently closed</h2>
+          <p class="availability">My regular books are currently closed, but I’m <strong>always open to really fun projects.</strong> Have something in mind? It’s always worth an email.</p>
+          <a class="email" href="mailto:antonyflemmingtattoo@gmail.com">antonyflemmingtattoo@gmail.com</a>
+          <a class="primary-action" href="mailto:antonyflemmingtattoo@gmail.com?subject=Tattoo%20booking%20enquiry&amp;body=Name%3A%0APhone%20number%3A%0ADesign%20idea%3A%0APlacement%3A">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5.5h18v13H3v-13Z" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8"/></svg>
+            Email to book
+          </a>
+          <p class="booking-note">Please include your <strong>name, phone number, design idea, and placement.</strong></p>
+        </section>
+
+        <nav class="links" aria-label="Antony Flemming links">
+        <a class="link-card" href="https://sixandgrace.com" target="_blank" rel="noopener noreferrer">
+          <span class="icon-frame" aria-hidden="true">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none"><path d="M5 8.5h14l1 12H4l1-12Z" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 9V6.5a3.5 3.5 0 0 1 7 0V9" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <span class="link-copy">
+            <span class="link-title">Merch</span>
+            <span class="link-detail">Six and Grace</span>
+          </span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+
+        <a class="link-card" href="https://www.instagram.com/sixandgrace" target="_blank" rel="noopener noreferrer">
+          <span class="icon-frame" aria-hidden="true">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z" stroke="currentColor" stroke-width="1.7"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <span class="link-copy">
+            <span class="link-title">Six and Grace</span>
+            <span class="link-detail">Tattoo shop · Calgary</span>
+          </span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+
+        <a class="link-card" href="https://www.instagram.com/antonyflemming" target="_blank" rel="noopener noreferrer">
+          <span class="icon-frame" aria-hidden="true">
+            <svg class="link-icon" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.7" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.8" r="1" fill="currentColor"/></svg>
+          </span>
+          <span class="link-copy">
+            <span class="link-title">Instagram</span>
+            <span class="link-detail">@antonyflemming</span>
+          </span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+        </nav>
+      </div>
+
+      <section class="about tab-panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about about-title" hidden>
+        <h2 id="about-title">About Antony</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+        <div class="about-copy">
+          <p>Antony Flemming is an English tattoo artist, painter and founder of <a href="https://www.sixandgrace.com" target="_blank" rel="noopener noreferrer">Six and Grace Tattoo Studio</a> in Calgary, Canada. Originally from Ruislip in West London, he has spent nearly two decades developing a career that brings together tattooing, fine art, travel and community.</p>
+          <p>His early career took shape at World of Tattoos in London, where working in a busy high street studio meant dealing directly with a wide range of people and ideas. That experience helped shape an approach rooted in custom design, drawing and respect for the person wearing the tattoo. Originality has remained central to his outlook, and he has <a href="https://www.th-ink.co.uk/2016/03/17/a-tattoo-artists-response-to-the-tattoo-fixers-debate/" target="_blank" rel="noopener noreferrer">spoken publicly about protecting artists' work and maintaining standards within the industry</a>.</p>
+          <p>Over time, Antony developed a distinctive approach to neo traditional tattooing, combining expressive animal portraits, botanical subjects and ornamental detail. His work balances strong structure with rich colour and carefully considered composition. Birds, animals and flowers are recurring subjects, with <a href="https://www.tattoodo.com/articles/top-tattoo-artists-in-canada-150112" target="_blank" rel="noopener noreferrer">Tattoodo including him in its selection of Canada's top tattoo artists</a> for his interpretation of wildlife and nature.</p>
+          <p>Tattooing has taken Antony around the world, with guest spots in New York and Los Angeles, convention appearances in Austin Texas and Paris, and extensive work at studios and conventions throughout the UK and Canada. These experiences have connected him with artists and collectors across different countries and tattoo communities.</p>
+          <p>His work has also led to collaborations beyond the studio. In 2014, <a href="https://www.guitarworld.com/gear/namm-2014-marshall-announces-custom-shop-jvm-tattoo-amp-series" target="_blank" rel="noopener noreferrer">Marshall selected him as one of five tattoo artists for its Custom Shop Tattoo Series</a>, putting his designs onto a range of amplifiers distributed internationally.</p>
+          <p>After moving to Calgary in 2018, Antony opened Six and Grace in 2020. Alongside his tattoo work, he has taught and supported multiple artists at different stages of their tattoo journeys, sharing his experience and helping them develop their skills and confidence. He also hosts paint nights that welcome both tattooers and people who simply enjoy making art. His approach to mentorship reflects a belief in sharing knowledge, encouraging others and continuing to learn throughout a creative career.</p>
+          <p>Reworking older tattoos is a particularly rewarding part of his craft. Antony enjoys the creative challenge of finding potential in an existing piece, whether that means restoring its impact, changing its direction or building it into a larger composition. The satisfaction comes from helping someone feel proud of a tattoo they once felt unhappy with.</p>
+          <p>Beyond tattooing, Antony creates <a href="#merch-panel-prints" id="about-prints-link">original paintings and prints</a>, alongside custom murals that bring his artwork into larger spaces. His mural practice extends his interest in colour, nature and composition to walls and event settings, including work for Calgary's Badlands Music Festival. Working at this scale gives him another way to explore his ideas and create artwork that people can experience together.</p>
+          <p>Giving back has been a recurring part of Antony's career. He created the Brighton Tattoo Convention Charity Football Match, bringing the tattoo community together through football and raising more than £20,000 for Cancer Research UK.</p>
+          <p>In Calgary, he has worked with Wild Rose Brewery on multiple charitable initiatives, including fundraising for Australian wildfire relief. His artwork also featured in a <a href="https://www.avenuecalgary.com/sponsored/sip-wild-rose-brewerys-new-seasonal-beer-and-support-mental-health-organizations/" target="_blank" rel="noopener noreferrer">Local Laundry collaboration with hockey player Josh Morrissey supporting the Glass Half Full Foundation</a>. Throughout his career, he has supported further causes through charity flash days and fundraisers, using his work to bring people together and contribute where he can.</p>
+          <p>Outside the studio, Antony is a proud father to his twin boys, River and Robin, and the owner and a player of Calgary football club New West Manor. Art and football have remained constants through his move from London to Canada, giving him ways to express himself, build friendships and contribute to the communities around him.</p>
+          <p>Today, his work spans skin, canvas and walls, with the same commitment running through each: thoughtful design, continual improvement and creating something that matters to the person it is made for.</p>
+        </div>
+      </section>
+
+      <section class="work-showcase tab-panel" id="panel-portfolio" role="tabpanel" aria-labelledby="tab-portfolio" aria-label="Tattoo portfolio" hidden>
+        <div class="slideshow" aria-roledescription="carousel" aria-label="Tattoo portfolio">
+          <div class="slideshow-frame">
+            <figure class="work-slide is-active" aria-hidden="false">
+              <img src="assets/portfolio-01.jpg" alt="Finished tattoo portfolio image 1" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-02.jpg" alt="Finished tattoo portfolio image 2" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-03.jpg" alt="Finished tattoo portfolio image 3" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-04.jpg" alt="Finished tattoo portfolio image 4" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-05.jpg" alt="Finished tattoo portfolio image 5" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-06.jpg" alt="Finished tattoo portfolio image 6" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-07.jpg" alt="Finished tattoo portfolio image 7" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-08.jpg" alt="Finished tattoo portfolio image 8" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-09.jpg" alt="Finished tattoo portfolio image 9" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-10.jpg" alt="Finished tattoo portfolio image 10" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-11.jpg" alt="Finished tattoo portfolio image 11" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-12.jpg" alt="Finished tattoo portfolio image 12" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-13.jpg" alt="Finished tattoo portfolio image 13" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-14.jpg" alt="Finished tattoo portfolio image 14" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-15.jpg" alt="Finished tattoo portfolio image 15" loading="lazy" />
+            </figure>
+          </div>
+          <div class="slide-controls">
+            <button class="slide-arrow slide-prev" type="button" aria-label="Previous tattoo">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="1.8"/></svg>
+            </button>
+            <div class="slide-dots" aria-label="Choose a tattoo">
+              <button class="slide-dot" type="button" aria-label="Show tattoo 1" aria-current="true"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 2" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 3" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 4" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 5" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 6" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 7" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 8" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 9" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 10" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 11" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 12" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 13" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 14" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 15" aria-current="false"></button>
+            </div>
+            <button class="slide-arrow slide-next" type="button" aria-label="Next tattoo">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8"/></svg>
+            </button>
+          </div>
+          <p class="slide-count" aria-live="polite">1 of 15</p>
+        </div>
+      </section>
+
+      <section class="career-film tab-panel" id="panel-film" role="tabpanel" aria-labelledby="tab-film career-film-title" hidden>
+        <h2 id="career-film-title">A Tattoo Life</h2>
+        <p>A documentary from the start of my career, filmed by Tom Mitchell.</p>
+        <span class="featured-duration">Featured film · 7:33</span>
+        <iframe src="https://www.youtube.com/embed/i5fzHOmyKx8" title="A Tattoo Life — a documentary by Tom Mitchell" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <div class="video-directory" aria-label="Antony Flemming video directory">
+          <section class="video-group" aria-labelledby="videos-documentaries">
+            <h3 id="videos-documentaries">Documentaries &amp; Interviews</h3>
+            <div class="video-list">
+              <a class="video-card" href="https://www.youtube.com/watch?v=ZHL0gY2RxpE" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Inside Tattoo Life</span>
+                <span class="video-duration">7:33</span>
+                <span class="video-description">Older documentary upload by Tattoo Tashan about Antony and tattooing.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=9SZoiX_-Q-I" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Inked: World of Tattoos, Ruislip</span>
+                <span class="video-duration">1:21:43</span>
+                <span class="video-description">Archive recording featuring Antony, uploaded by Live Stream in July 2017.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=2D05x451WKw" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Antony Flemming &amp; Ariel at London Tattoo Convention</span>
+                <span class="video-duration">2:19</span>
+                <span class="video-description">Convention feature uploaded by TATTO FUNCLUP in December 2019.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/shorts/TZZLf4uNhaE" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Parlor Talk: Apprenticeship Interview Clip</span>
+                <span class="video-duration">Short</span>
+                <span class="video-description">Public clip posted by D World of Ink, crediting Indelible.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+            </div>
+          </section>
+
+          <section class="video-group" aria-labelledby="videos-work">
+            <h3 id="videos-work">Work &amp; Collaborations</h3>
+            <div class="video-list">
+              <a class="video-card" href="https://www.youtube.com/shorts/D5DUmH40_HQ" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Tattooing Over Blackout Ink</span>
+                <span class="video-duration">Short</span>
+                <span class="video-description">Repost by @beardedmoney explicitly crediting @antonyflemming.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=RXbDDm8Hz-k" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Marshall Custom Tattoo Antony Flemming Amplifier</span>
+                <span class="video-duration">2015</span>
+                <span class="video-description">Product demonstration of the Marshall collaboration, uploaded in 2015.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+            </div>
+          </section>
+
+          <section class="video-group" aria-labelledby="videos-talk">
+            <h3 id="videos-talk">Tattooer Talk</h3>
+            <div class="video-list">
+              <a class="video-card" href="https://www.youtube.com/watch?v=-C15vx2EcqU" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">With Ami James</span>
+                <span class="video-duration">54:27</span>
+                <span class="video-description">Antony and Ami discuss the tattoo industry.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=fjxc32MLPh4" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">With Eckel</span>
+                <span class="video-duration">1:44:03</span>
+                <span class="video-description">Antony and Eckel discuss the tattoo industry.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=NCn2g3a8cRQ" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">With Glendale Bully, Sam Read &amp; Matt Curzon</span>
+                <span class="video-duration">56:30</span>
+                <span class="video-description">A group conversation with fellow tattoo artists.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=itA_AHU7vl8" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">With Joe Capobianco, Teresa Sharpe &amp; More</span>
+                <span class="video-duration">3:42:15</span>
+                <span class="video-description">An extended recording featuring multiple tattoo artists.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+            </div>
+          </section>
+
+          <section class="video-group" aria-labelledby="videos-tutorials">
+            <h3 id="videos-tutorials">Art Tutorials</h3>
+            <div class="video-list">
+              <a class="video-card" href="https://www.youtube.com/watch?v=Jir4N8rbMP4" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Painting in Procreate with John Engfors</span>
+                <span class="video-duration">1:54:38</span>
+                <span class="video-description">A long painting session with Antony and John.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=kR5M64FbmgE" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Drawing Script with Justin Burnout</span>
+                <span class="video-duration">2:12:10</span>
+                <span class="video-description">A live drawing session with Antony and Justin.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+            </div>
+          </section>
+
+          <section class="video-group" aria-labelledby="videos-football">
+            <h3 id="videos-football">Charity Football</h3>
+            <div class="video-list">
+              <a class="video-card" href="https://www.youtube.com/watch?v=67tswOnOht4" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Brighton Tattoo Convention: 2016 Charity Match</span>
+                <span class="video-duration">About 2½ min</span>
+                <span class="video-description">Published on Antony’s older channel.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+              <a class="video-card" href="https://www.youtube.com/watch?v=n1oP4q2pFnU" target="_blank" rel="noopener noreferrer">
+                <span class="video-title">Brighton Tattoo Convention: 2018 Charity Match</span>
+                <span class="video-duration">About 28 min</span>
+                <span class="video-description">Published on Antony’s older channel.</span>
+                <span class="video-watch">Watch on YouTube <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+              </a>
+            </div>
+          </section>
+
+          <a class="primary-action video-channel-link" href="https://www.youtube.com/@antonyflemming8975/videos" target="_blank" rel="noopener noreferrer">Browse older YouTube channel</a>
+        </div>
+      </section>
+
+      <section class="press tab-panel" id="panel-press" role="tabpanel" aria-labelledby="tab-press press-title" hidden>
+        <h2 id="press-title">Press</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+        <p class="merch-intro">Articles, interviews, collaborations and published credits.</p>
+        <section class="press-group" aria-labelledby="press-group-1">
+          <h3 id="press-group-1">Interviews &amp; recognition</h3>
+          <div class="press-list">
+            <a class="press-card" href="https://pocketmags.com/total-tattoo-magazine/may-2019" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Total Tattoo</span>
+              <span class="press-title">Antony Flemming interview in Total Tattoo</span>
+              <span class="press-date">May 2019 · Issue 175</span>
+              <span class="press-description">The issue contents explicitly list Antony among the featured artist interviews, noting his move from the UK to Canada. Full interview requires paid access.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoodo.com/articles/top-tattoo-artists-in-canada-150112" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoodo</span>
+              <span class="press-title">21 Top Tattoo Artists in Canada You Need to Know</span>
+              <span class="press-date">Date not confirmed</span>
+              <span class="press-description">Includes a dedicated section on Antony’s wildlife tattoos in Calgary, highlighting animal portraits, botanical subjects and ornamental details.</span>
+            </a>
+            <a class="press-card" href="https://inkedmag.com/original-news/canada-day-tattoos" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Inked</span>
+              <span class="press-title">Happy Canada Day!</span>
+              <span class="press-date">1 July 2022</span>
+              <span class="press-description">Names Antony in its celebration of Canadian tattoo artists and includes multiple Instagram examples of his work.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoodo.com/guides/styles/neo-traditional" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoodo</span>
+              <span class="press-title">Neo Traditional tattoo style guide</span>
+              <span class="press-date">Date not confirmed</span>
+              <span class="press-description">Discusses Antony’s work among leading examples of the style, with particular attention to decorative and ornamental elements.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoodo.com/guides/styles/illustrative" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoodo</span>
+              <span class="press-title">Illustrative tattoo style guide</span>
+              <span class="press-date">Date not confirmed</span>
+              <span class="press-description">Names Antony alongside other artists when discussing Art Nouveau inspired filigree and ornamentation.</span>
+            </a>
+            <a class="press-card" href="https://www.trendingtattoo.com/best-tattoo-artists-in-british-columbia/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">TrendingTattoo</span>
+              <span class="press-title">10 Best Tattoo Artists in British Columbia, Canada</span>
+              <span class="press-date">Date not listed</span>
+              <span class="press-description">This promotional third-party list includes Flemming for Vancouver guest spots, praising his ornamental and neo-traditional work.</span>
+            </a>
+            <a class="press-card" href="https://vimeo.com/channels/tommitchellproductions/60737118" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Vimeo · Tom Mitchell Production</span>
+              <span class="press-title">Antony Flemming — A Tattoo Life</span>
+              <span class="press-date">Circa 2013</span>
+              <span class="press-description">The original short film explores the life and thoughts of Flemming during his early career in London.</span>
+            </a>
+          </div>
+        </section>
+        <section class="press-group" aria-labelledby="press-group-2">
+          <h3 id="press-group-2">Industry commentary</h3>
+          <div class="press-list">
+            <a class="press-card" href="https://www.th-ink.co.uk/2016/03/17/a-tattoo-artists-response-to-the-tattoo-fixers-debate/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Things&amp;Ink</span>
+              <span class="press-title">A tattoo artist’s response to the Tattoo Fixers debate…</span>
+              <span class="press-date">17 March 2016</span>
+              <span class="press-description">An extended contribution from Antony about original designs, professional standards and the public portrayal of tattooing. Published by Alice Snape.</span>
+            </a>
+            <a class="press-card" href="https://www.gq-magazine.co.uk/article/tattoo-fixers-why-do-tattoo-artists-hate-e4" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">British GQ</span>
+              <span class="press-title">Why do tattoo artists hate E4’s Tattoo Fixers?</span>
+              <span class="press-date">29 March 2016</span>
+              <span class="press-description">Ailis Brennan’s report includes Antony’s criticism of alleged design copying. The article spells his first name “Anthony”.</span>
+            </a>
+            <a class="press-card" href="https://www.vice.com/en/article/fuck-tattoo-fixers-why-the-british-tattoo-industry-hates-the-c4-show/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">VICE</span>
+              <span class="press-title">Tattoo Fixers industry coverage</span>
+              <span class="press-date">15 March 2016</span>
+              <span class="press-description">Quotes Antony on alleged copying and industry standards.</span>
+            </a>
+            <a class="press-card" href="https://www.nme.com/blogs/nme-blogs/tattoo-fixers-demolished-on-social-media-10296" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">NME</span>
+              <span class="press-title">#FuckTattooFixers: Tattoo Artists Are Mad About E4’s Tattoo Fixers</span>
+              <span class="press-date">2016 · exact date unconfirmed</span>
+              <span class="press-description">Includes an embedded Antony Flemming Instagram post from 14 March 2016 in its coverage of artists’ reactions.</span>
+            </a>
+            <a class="press-card" href="https://www.nme.com/blogs/nme-blogs/10-times-the-tattoo-fixers-cover-ups-were-too-bloody-big-5082" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">NME</span>
+              <span class="press-title">10 Times The ‘Tattoo Fixers’ Cover-ups Were Too Big</span>
+              <span class="press-date">2016 · exact date unconfirmed</span>
+              <span class="press-description">References Antony’s criticism of the programme’s representation of the UK tattoo scene, using the spelling “Anthony”.</span>
+            </a>
+          </div>
+        </section>
+        <section class="press-group" aria-labelledby="press-group-3">
+          <h3 id="press-group-3">Marshall collaboration</h3>
+          <div class="press-list">
+            <a class="press-card" href="https://www.guitarworld.com/gear/namm-2014-marshall-announces-custom-shop-jvm-tattoo-amp-series" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Guitar World</span>
+              <span class="press-title">NAMM 2014: Marshall Announces Custom Shop JVM Tattoo Amp Series</span>
+              <span class="press-date">23 January 2014</span>
+              <span class="press-description">Names Antony of World of Tattoos among the artists who created designs for the limited edition range.</span>
+            </a>
+            <a class="press-card" href="https://www.musicradar.com/news/guitars/namm-2014-stunning-new-marshall-custom-shop-tattoo-amps-592120" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">MusicRadar</span>
+              <span class="press-title">NAMM 2014: Stunning new Marshall Custom Shop Tattoo amps</span>
+              <span class="press-date">23 January 2014</span>
+              <span class="press-description">Will Groves introduces the collaboration and reproduces the announcement naming Antony; includes photographs of the range.</span>
+            </a>
+            <a class="press-card" href="https://www.premierguitar.com/marshall-amplification-releases-custom-shop-tattoo-series" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Premier Guitar</span>
+              <span class="press-title">Marshall Amplification Releases Custom Shop Tattoo Series</span>
+              <span class="press-date">23 January 2014</span>
+              <span class="press-description">Credits Antony in the artist roster and identifies an amplifier design in the lead image caption.</span>
+            </a>
+            <a class="press-card" href="https://fr.audiofanzine.com/tete-d-ampli-guitare-tout-lampe/marshall/jvm410h/news/a.play,n.24490.html" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Audiofanzine</span>
+              <span class="press-title">[NAMM] Marshall tatoue ses amplis</span>
+              <span class="press-date">23 January 2014</span>
+              <span class="press-description">Esther Banshee’s French language news item names Antony among the five designers.</span>
+            </a>
+            <a class="press-card" href="https://www.musicoff.com/news/marshall-tattoo-limited-edition/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Musicoff</span>
+              <span class="press-title">Marshall Tattoo Limited Edition</span>
+              <span class="press-date">24 June 2015</span>
+              <span class="press-description">Francesco Sicheri’s article includes a short statement from Antony about the connection between tattooing and music.</span>
+            </a>
+            <a class="press-card" href="https://www.ziogiorgio.it/2014/03/26/marshall-nuovi-amplificatori-con-grafiche-tattoo/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">ZioGiorgio</span>
+              <span class="press-title">Marshall: nuovi amplificatori con grafiche Tattoo</span>
+              <span class="press-date">26 March 2014</span>
+              <span class="press-description">Italian coverage of the range names Antony and the amplifier models carrying the artists’ designs.</span>
+            </a>
+          </div>
+        </section>
+        <section class="press-group" aria-labelledby="press-group-4">
+          <h3 id="press-group-4">Artwork &amp; community</h3>
+          <div class="press-list">
+            <a class="press-card" href="https://www.tattoolife.com/neo-traditional-tattoo-gallery/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoo Life</span>
+              <span class="press-title">Neo traditional tattoo gallery</span>
+              <span class="press-date">22 March 2021</span>
+              <span class="press-description">Features credited work by Antony Flemming at Six and Grace in Calgary.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoolife.com/hands-tattoos-some-fresh-inspiration/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoo Life</span>
+              <span class="press-title">Hands Tattoos, some fresh inspiration!</span>
+              <span class="press-date">14 August 2021</span>
+              <span class="press-description">Includes a hand tattoo credited to Antony in a themed editorial gallery.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoolife.com/front-piece-tattoo-gallery/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoo Life</span>
+              <span class="press-title">Front Piece Tattoo Gallery</span>
+              <span class="press-date">31 December 2021</span>
+              <span class="press-description">Includes Antony’s work among a selection of front body tattoo compositions.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoolife.com/peony-the-queen-of-flowers-in-japanese-culture/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoo Life</span>
+              <span class="press-title">Peony, the queen of flowers in Japanese culture</span>
+              <span class="press-date">10 January 2022</span>
+              <span class="press-description">Maggie Whales’ feature on peony imagery includes a tattoo credited to Antony.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoolife.com/art-with-friends/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoo Life</span>
+              <span class="press-title">Art With Friends</span>
+              <span class="press-date">5 January 2022</span>
+              <span class="press-description">Names Antony among 16 tattoo artists participating in the Art Tattoo Montreal collaborative art project.</span>
+            </a>
+            <a class="press-card" href="https://www.avenuecalgary.com/sponsored/sip-wild-rose-brewerys-new-seasonal-beer-and-support-mental-health-organizations/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Avenue Calgary</span>
+              <span class="press-title">Sip Wild Rose Brewery’s New Seasonal Beer and Support Mental Health Organizations</span>
+              <span class="press-date">2021 · exact date unconfirmed</span>
+              <span class="press-description">Credits Antony’s shirt design for the Local Laundry and Josh Morrissey initiative supporting the Glass Half Full Foundation. Advertiser supplied content.</span>
+            </a>
+            <a class="press-card" href="http://thetattoocollective.co.uk/the-tattoo-collective-posters-2018/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">The Tattoo Collective</span>
+              <span class="press-title">Announcement: The Tattoo Collective Posters</span>
+              <span class="press-date">31 January 2018</span>
+              <span class="press-description">The Tattoo Collective commissioned Flemming to create one of four official posters for its 2018 London convention.</span>
+            </a>
+            <a class="press-card" href="https://thetvdb.com/series/the-tattoo-shop-facebook/episodes/7693470" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">The Tattoo Shop · Tattoodo × Facebook Watch</span>
+              <span class="press-title">The Sicilian Volcano</span>
+              <span class="press-date">2018</span>
+              <span class="press-description">Flemming appeared as a guest artist at Art Basel Miami on Tattoodo’s Facebook Watch series The Tattoo Shop.</span>
+            </a>
+            <a class="press-card" href="https://thetvdb.com/series/the-tattoo-shop-facebook/episodes/7693488" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">The Tattoo Shop · Tattoodo × Facebook Watch</span>
+              <span class="press-title">LIVE at The Tattoo Shop with Ami James &amp; Antony Flemming</span>
+              <span class="press-date">20 April 2018</span>
+              <span class="press-description">Flemming headlined the series finale with a live neo-traditional session alongside Ami James.</span>
+            </a>
+          </div>
+        </section>
+        <section class="press-group" aria-labelledby="press-group-5">
+          <h3 id="press-group-5">Published mentions</h3>
+          <div class="press-list">
+            <a class="press-card" href="https://www.evexperience.com/blog/2024/8/3/exceptional-women-of-east-village" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">East Village Calgary</span>
+              <span class="press-title">Exceptional Women of East Village</span>
+              <span class="press-date">8 March 2024</span>
+              <span class="press-description">Natasha Mansueti’s profile identifies Antony as her mentor and quotes him discussing her development as a tattoo artist.</span>
+            </a>
+            <a class="press-card" href="https://inkedmag.com/original-news/martindobson" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Inked</span>
+              <span class="press-title">This Man Has the Most Unique Tattoo Collection on the Planet</span>
+              <span class="press-date">5 June 2020</span>
+              <span class="press-description">In Devon Preston’s interview, Martin Dobson names Antony among the artists in his hexagon tattoo collection.</span>
+            </a>
+            <a class="press-card" href="https://www.th-ink.co.uk/2016/08/29/interview-with-georgina-liliane/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Things&amp;Ink</span>
+              <span class="press-title">Interview with Georgina Liliane</span>
+              <span class="press-date">29 August 2016</span>
+              <span class="press-description">Georgina credits Antony with both of her sleeves and praises their detail in an interview by Rosalie Hurr.</span>
+            </a>
+            <a class="press-card" href="https://www.th-ink.co.uk/2019/03/11/btc-street-style/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Things&amp;Ink</span>
+              <span class="press-title">Brighton Tattoo Convention: Street Style</span>
+              <span class="press-date">11 March 2019</span>
+              <span class="press-description">Credits Antony among Anna Harvey Williams’ tattoo artists and records her attending while he was visiting from Canada.</span>
+            </a>
+            <a class="press-card" href="https://www.tattoonews.com/post/10-questions-with-tattoo-artist-beatroce" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoo News</span>
+              <span class="press-title">10 questions with tattoo artist Beatroce</span>
+              <span class="press-date">28 February · year not displayed</span>
+              <span class="press-description">Beatroce says she collected a tattoo from Antony at the Montreal convention in 2022. The page lists an update on 1 April.</span>
+            </a>
+            <a class="press-card" href="https://alter1fo.com/international-tattoo-convention-rennes-tatouage-missatomik-81313" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Alter1fo</span>
+              <span class="press-title">S’il te plaît… tatoue-moi un mouton !</span>
+              <span class="press-date">5 May 2014</span>
+              <span class="press-description">Rennes convention organisers single Antony out as a favourite among invited artists and link to his tattoo portfolio.</span>
+            </a>
+            <a class="press-card" href="https://us.tattoofilter.com/tattoo-events/liverpool/liverpool-tattoo-convention-2016" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Tattoofilter</span>
+              <span class="press-title">9th Liverpool Tattoo Convention</span>
+              <span class="press-date">2016</span>
+              <span class="press-description">Flemming appeared as a working artist at the 2016 Liverpool Tattoo Convention, with his styles listed as neo-traditional and illustrative.</span>
+            </a>
+            <a class="press-card" href="https://www.th-ink.co.uk/2015/09/20/miniature-ink-ii-tattoo-artist-announcement/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Things&amp;Ink</span>
+              <span class="press-title">Miniature Ink II</span>
+              <span class="press-date">20 September 2015</span>
+              <span class="press-description">Things&amp;Ink’s Miniature Ink II announcement lists Antony Flemming among the exhibiting artists.</span>
+            </a>
+          </div>
+        </section>
+        <section class="press-group" aria-labelledby="press-group-6">
+          <h3 id="press-group-6">Additional links &amp; leads</h3>
+          <div class="press-list">
+            <a class="press-card" href="https://www.samash.com/spotlight/obscure-du-jour-marshall-jvm215c-anthony-flemming-custom-tattoo" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">Sam Ash Spotlight</span>
+              <span class="press-title">Obscure Du Jour: Marshall JVM215C Anthony Flemming Custom Tattoo</span>
+              <span class="press-date">8 November 2019</span>
+              <span class="press-description">Mike Rock’s dedicated retailer feature discusses the amplifier carrying Antony’s skull design and credits his artwork.</span>
+            </a>
+            <a class="press-card" href="https://blog.freshtrends.com/tattoo-qa-an-interview-with-leonora-gabriella/" target="_blank" rel="noopener noreferrer">
+              <span class="press-publication">FreshTrends</span>
+              <span class="press-title">Tattoo Q&amp;A: An Interview with Leonora Gabriella</span>
+              <span class="press-date">2015 · page displays 05/04/2015</span>
+              <span class="press-description">Leonora discusses a chest tattoo started by Antony and how it connects with her other work.</span>
+            </a>
+          </div>
+        </section>
+      </section>
+
+      <section class="reviews tab-panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews reviews-title" hidden>
+        <h2 id="reviews-title">Reviews</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+        <div class="review-summary" aria-label="Six and Grace rating: 4.8 out of 5 from 21 Google reviews">
+          <span class="review-score">4.8</span>
+          <span>
+            <span class="review-stars" aria-hidden="true">★★★★★</span>
+            <span class="review-total">21 Google reviews</span>
+          </span>
+        </div>
+        <div class="review-list">
+          <article class="review-card">
+            <blockquote>“I was so grateful he was the one who handled a rework of my first tattoo… couldn’t be happier with his work. Highly recommend!”</blockquote>
+            <cite>Spencer</cite>
+            <span class="review-meta">5 stars · edited around June 2026</span>
+          </article>
+          <article class="review-card">
+            <blockquote>“I travelled to see Antony, whose color work is truly something of legend… I now have the most beautiful piece of art on me.”</blockquote>
+            <cite>Caroline Smith</cite>
+            <span class="review-meta">5 stars · around July 2026</span>
+          </article>
+          <article class="review-card">
+            <blockquote>“From the moment you walk through the door, you’re treated with professionalism, respect, and genuine passion for the art.”</blockquote>
+            <cite>5X5 Inc</cite>
+            <span class="review-meta">5 stars · around August 2026</span>
+          </article>
+        </div>
+        <a class="primary-action reviews-link" href="https://www.google.com/maps/search/Six+and+Grace+tattoo+Calgary" target="_blank" rel="noopener noreferrer">Read Google reviews</a>
+      </section>
+
+      <section class="merch tab-panel" id="panel-merch" role="tabpanel" aria-labelledby="tab-merch merch-title" hidden>
+        <h2 id="merch-title">Merch</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+        <nav class="merch-tabs" role="tablist" aria-label="Merch categories">
+          <button class="merch-tab-button" id="merch-tab-prints" type="button" role="tab" aria-selected="true" aria-controls="merch-panel-prints">Prints</button>
+          <button class="merch-tab-button" id="merch-tab-products" type="button" role="tab" aria-selected="false" aria-controls="merch-panel-products" tabindex="-1">Merch</button>
+        </nav>
+
+        <div class="merch-subpanel" id="merch-panel-prints" role="tabpanel" aria-labelledby="merch-tab-prints">
+          <p class="merch-intro">Antony Flemming art prints, available directly from Six and Grace.</p>
+          <div class="print-list" aria-label="Antony Flemming prints">
+          <article class="print-card">
+            <img class="print-art" src="assets/print-provenance.png" alt="Provenance art print preview" loading="lazy" />
+            <div class="print-info">
+              <h3 class="print-name">Provenance</h3>
+              <p class="print-options"><span>16 × 20 <strong>$100</strong></span><span>32 × 40 <strong>$300</strong></span></p>
+            </div>
+            <a class="print-buy" href="https://sixandgrace.com/products/antony-flemming-provenance" target="_blank" rel="noopener noreferrer">
+              Buy now
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="print-card">
+            <img class="print-art" src="assets/print-guardian.png" alt="The Guardian art print preview" loading="lazy" />
+            <div class="print-info">
+              <h3 class="print-name">The Guardian</h3>
+              <p class="print-options"><span>8 × 22 <strong>$100</strong></span><span>16 × 44 <strong>$300</strong></span></p>
+            </div>
+            <a class="print-buy" href="https://sixandgrace.com/products/antony-flemming-the-raven" target="_blank" rel="noopener noreferrer">
+              Buy now
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="print-card">
+            <img class="print-art" src="assets/print-keeper.png" alt="The Keeper art print preview" loading="lazy" />
+            <div class="print-info">
+              <h3 class="print-name">The Keeper</h3>
+              <p class="print-options"><span>10 × 20 <strong>$80</strong></span><span>20 × 40 <strong>$200</strong></span></p>
+            </div>
+            <a class="print-buy" href="https://sixandgrace.com/products/antony-flemming-the-lady" target="_blank" rel="noopener noreferrer">
+              Buy now
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="print-card">
+            <img class="print-art" src="assets/print-gauntlet.png" alt="The Gauntlet art print preview" loading="lazy" />
+            <div class="print-info">
+              <h3 class="print-name">The Gauntlet</h3>
+              <p class="print-options"><span>10 × 20 <strong>$70</strong></span><span>20 × 40 <strong>$200</strong></span></p>
+            </div>
+            <a class="print-buy" href="https://sixandgrace.com/products/antony-flemming-the-gauntlet" target="_blank" rel="noopener noreferrer">
+              Buy now
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          </div>
+        </div>
+
+        <section class="shop-merch merch-subpanel" id="merch-panel-products" role="tabpanel" aria-labelledby="merch-tab-products" hidden>
+          <h3 id="shop-merch-title">Shop merch</h3>
+          <div class="merch-product-list">
+            <a class="merch-product" href="https://sixandgrace.com/products/skull-butterfly-t-shirt" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-butterfly-skull-shirt.webp" alt="Black Butterfly Skull short sleeve T-shirt" />
+              <span class="merch-product-name">Butterfly Skull Short Sleeve T-Shirt</span>
+              <span class="merch-product-price">$35</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/crop-hoodie" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-butterfly-crop-hoodie.webp" alt="Black Butterfly crop hoodie" />
+              <span class="merch-product-name">Butterfly Crop Hoodie</span>
+              <span class="merch-product-price">$60</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/unisex-hoodie" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-sixandgrace-hoodie.webp" alt="Black SIXANDGRACE hoodie" />
+              <span class="merch-product-name">SIXANDGRACE Hoodie</span>
+              <span class="merch-product-price">$50</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/neon-s-g-pom-pom-beanie-1" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-neon-pompom-toque.webp" alt="Neon S and G pom-pom toque" />
+              <span class="merch-product-name">NEON S&amp;G Pom-Pom Toque</span>
+              <span class="merch-product-price">$30</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/sixandgrace-beanie" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-sixandgrace-toque.webp" alt="Black SIXANDGRACE toque" />
+              <span class="merch-product-name">SIXANDGRACE Toque</span>
+              <span class="merch-product-price">$30</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/s-g-snapback-hat" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-sg-snapback.webp" alt="Black S and G snapback hat" />
+              <span class="merch-product-name">S&amp;G Snapback Hat</span>
+              <span class="merch-product-price">$35</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/s-g-pom-pom-beanie" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-sg-pompom-toque.webp" alt="Black S and G pom-pom toque" />
+              <span class="merch-product-name">S&amp;G Pom-Pom Toque</span>
+              <span class="merch-product-price">$30</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/snapback-hat" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-butterfly-snapback.webp" alt="Black Butterfly snapback hat" />
+              <span class="merch-product-name">Butterfly Snapback Hat</span>
+              <span class="merch-product-price">$35</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+            <a class="merch-product" href="https://sixandgrace.com/products/eco-tote-bag" target="_blank" rel="noopener noreferrer">
+              <img class="merch-product-image" src="assets/merch-butterfly-skull-tote.webp" alt="Black Butterfly Skull eco tote bag" />
+              <span class="merch-product-name">Butterfly Skull Eco Tote Bag</span>
+              <span class="merch-product-price">$30</span>
+              <span class="merch-product-buy">Buy now <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            </a>
+          </div>
+        </section>
+        <nav class="links merch-links" aria-label="Six and Grace links">
+          <a class="link-card" href="https://sixandgrace.com" target="_blank" rel="noopener noreferrer">
+            <span class="icon-frame" aria-hidden="true">
+              <svg class="link-icon" viewBox="0 0 24 24" fill="none"><path d="M5 8.5h14l1 12H4l1-12Z" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 9V6.5a3.5 3.5 0 0 1 7 0V9" stroke="currentColor" stroke-width="1.7"/></svg>
+            </span>
+            <span class="link-copy">
+              <span class="link-title">Six and Grace Shop</span>
+              <span class="link-detail">Merch and prints</span>
+            </span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+          </a>
+          <a class="link-card" href="https://www.instagram.com/sixandgrace" target="_blank" rel="noopener noreferrer">
+            <span class="icon-frame" aria-hidden="true">
+              <svg class="link-icon" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="4" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.7" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.8" r="1" fill="currentColor"/></svg>
+            </span>
+            <span class="link-copy">
+              <span class="link-title">Six and Grace Instagram</span>
+              <span class="link-detail">@sixandgrace</span>
+            </span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+          </a>
+        </nav>
+      </section>
+
+      <section class="aftercare tab-panel" id="panel-aftercare" role="tabpanel" aria-labelledby="tab-aftercare aftercare-title" hidden>
+        <h2 id="aftercare-title">Tattoo Aftercare</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+
+        <nav class="merch-tabs aftercare-tabs" role="tablist" aria-label="Aftercare categories">
+          <button class="merch-tab-button aftercare-tab-button" id="aftercare-tab-instructions" type="button" role="tab" aria-selected="true" aria-controls="aftercare-panel-instructions">Aftercare Instructions</button>
+          <button class="merch-tab-button aftercare-tab-button" id="aftercare-tab-products" type="button" role="tab" aria-selected="false" aria-controls="aftercare-panel-products" tabindex="-1">Aftercare Products</button>
+        </nav>
+
+        <div class="aftercare-subpanel" id="aftercare-panel-instructions" role="tabpanel" aria-labelledby="aftercare-tab-instructions">
+          <p class="aftercare-intro">Follow the instructions for the type of bandage your artist applied.</p>
+
+          <section class="care-section" aria-labelledby="second-skin-title">
+            <h3 id="second-skin-title">Second Skin bandage</h3>
+            <p>Keep the bandage on for 4–5 days. Some fluid build-up underneath is normal. If it leaks, remove it and follow the standard bandage instructions below.</p>
+            <p>After 4–5 days, remove it gently under warm running water. Stretch the bandage from each side rather than peeling it like a bandaid; this lets the adhesive release without pulling ink from the tattoo.</p>
+            <p>Wash the tattoo with mild, fragrance-free soap and warm water. Once healing is underway, use an unscented, non-greasy lotion such as Aquaphor, Hustle Butter or Burt’s Bees Almond &amp; Milk Hand Cream.</p>
+            <p class="care-warning">Do not use Vaseline.</p>
+          </section>
+
+          <section class="care-section" aria-labelledby="standard-bandage-title">
+            <h3 id="standard-bandage-title">Standard bandage</h3>
+            <ol class="care-steps">
+              <li>Leave the bandage on for 2–3 hours, or as your artist instructs.</li>
+              <li>Wash your hands well before touching your tattoo.</li>
+              <li>Wash with warm water and mild, fragrance-free soap. Gently remove any Vaseline, plasma and excess ink with your fingertips. Do not use anything abrasive.</li>
+              <li>Rinse and pat dry with a disposable paper towel, or let the tattoo air dry.</li>
+              <li>Wash twice a day—morning and night—until fully healed. Don’t over-wash. Regular showering is fine, but don’t submerge the tattoo in baths or swimming pools until it has healed.</li>
+              <li>The tattoo will get flaky, dry and tight over the next few days. Apply fragrance-free, non-greasy lotion 2–3 times daily, using it sparingly and rubbing it in fully. Don’t over-moisturize. Scabs take on the ink’s colour; this doesn’t mean the ink is falling out. Leave them alone—don’t pick or scratch. The tattoo may look dull until healed, which is normal and will pass in a few weeks. Wear loose clothing over the area.</li>
+            </ol>
+          </section>
+
+          <div class="healing-note">
+            <p>Keep your tattoo out of the sun for the first few weeks of healing. Once fully healed, apply a good SPF sunscreen to help prevent fading.</p>
+            <p><strong>Enjoy your new tattoo!</strong><br />If you have any questions, do not hesitate to <a href="mailto:antonyflemmingtattoo@gmail.com">email your artist</a>.</p>
+          </div>
+        </div>
+
+        <section class="products-soon aftercare-subpanel" id="aftercare-panel-products" role="tabpanel" aria-labelledby="aftercare-tab-products" hidden>
+          <h3 id="products-soon-title">Aftercare products</h3>
+          <p class="products-by">New products by JaneSaysyyc</p>
+          <div class="coming-product-list">
+            <article class="coming-product">
+              <img class="coming-product-image" src="assets/have-grace-aftercare.webp" alt="Closed amber jar of Have Grace tattoo aftercare" />
+              <span class="coming-product-status">Coming soon</span>
+              <span class="coming-product-name">'Have Grace'</span>
+              <span class="coming-product-type">Tattoo Aftercare</span>
+              <span class="coming-product-tagline">“care for what you carry”</span>
+              <p class="coming-product-details"><strong>Ingredients:</strong> Beeswax, Mango Butter, Shea Butter, Jojoba Oil, Vitamin E Oil, German Chamomile and Rose Essential Oils, Rose Hydrosol, Arrowroot Powder, Coconut Milk Powder.</p>
+            </article>
+            <article class="coming-product">
+              <img class="coming-product-image" src="assets/cedar-and-grace-soap.webp" alt="Burgundy Cedar and Grace foaming hand soap in a pump bottle" />
+              <span class="coming-product-status">Coming soon</span>
+              <span class="coming-product-name">'Cedar and Grace'</span>
+              <span class="coming-product-type">Foaming Hand Soap</span>
+              <p class="coming-product-details"><strong>Scent notes:</strong> Cedar, Black Spruce, Peru Balsam, Eucalyptus and Vanilla.</p>
+            </article>
+            <article class="coming-product">
+              <img class="coming-product-image" src="assets/cedar-and-grace-diffuser.webp" alt="Cedar and Grace diffuser scent bottle with reeds" />
+              <span class="coming-product-status">Coming soon</span>
+              <span class="coming-product-name">'Cedar and Grace'</span>
+              <span class="coming-product-type">Diffuser Scent</span>
+              <p class="coming-product-details"><strong>Scent notes:</strong> Cedar, Black Spruce, Peru Balsam, Eucalyptus and Vanilla.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <p class="footer">Calgary, Canada</p>
+    </main>
+
+    <script>
+      (() => {
+        const tablist = document.querySelector('.tabs');
+        const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+        const panels = [...document.querySelectorAll('.page > [role="tabpanel"]')];
+
+        const activateTab = (tab, moveFocus = false) => {
+          tabs.forEach((item) => {
+            const active = item === tab;
+            item.setAttribute('aria-selected', String(active));
+            item.tabIndex = active ? 0 : -1;
+          });
+          panels.forEach((panel) => {
+            panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+          });
+          if (moveFocus) tab.focus();
+        };
+
+        tabs.forEach((tab) => tab.addEventListener('click', () => activateTab(tab)));
+        tablist.addEventListener('keydown', (event) => {
+          const currentIndex = tabs.indexOf(document.activeElement);
+          if (currentIndex < 0) return;
+
+          let nextIndex = currentIndex;
+          if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+          else if (event.key === 'Home') nextIndex = 0;
+          else if (event.key === 'End') nextIndex = tabs.length - 1;
+          else return;
+
+          event.preventDefault();
+          activateTab(tabs[nextIndex], true);
+        });
+
+        const merchTablist = document.querySelector('.merch-tabs');
+        const merchTabs = [...merchTablist.querySelectorAll('[role="tab"]')];
+        const merchPanels = [...document.querySelectorAll('.merch-subpanel')];
+
+        const activateMerchTab = (tab, moveFocus = false) => {
+          merchTabs.forEach((item) => {
+            const active = item === tab;
+            item.setAttribute('aria-selected', String(active));
+            item.tabIndex = active ? 0 : -1;
+          });
+          merchPanels.forEach((panel) => {
+            panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+          });
+          if (moveFocus) tab.focus();
+        };
+
+        merchTabs.forEach((tab) => tab.addEventListener('click', () => activateMerchTab(tab)));
+        merchTablist.addEventListener('keydown', (event) => {
+          const currentIndex = merchTabs.indexOf(document.activeElement);
+          if (currentIndex < 0 || !['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = currentIndex;
+          if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % merchTabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + merchTabs.length) % merchTabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = merchTabs.length - 1;
+          activateMerchTab(merchTabs[nextIndex], true);
+        });
+
+        document.getElementById('about-prints-link').addEventListener('click', (event) => {
+          event.preventDefault();
+          activateTab(document.getElementById('tab-merch'));
+          activateMerchTab(document.getElementById('merch-tab-prints'));
+          requestAnimationFrame(() => document.getElementById('merch-panel-prints').scrollIntoView({ block: 'start' }));
+        });
+
+        const aftercareTablist = document.querySelector('.aftercare-tabs');
+        const aftercareTabs = [...aftercareTablist.querySelectorAll('[role="tab"]')];
+        const aftercarePanels = [...document.querySelectorAll('.aftercare-subpanel')];
+
+        const activateAftercareTab = (tab, moveFocus = false) => {
+          aftercareTabs.forEach((item) => {
+            const active = item === tab;
+            item.setAttribute('aria-selected', String(active));
+            item.tabIndex = active ? 0 : -1;
+          });
+          aftercarePanels.forEach((panel) => {
+            panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+          });
+          if (moveFocus) tab.focus();
+        };
+
+        aftercareTabs.forEach((tab) => tab.addEventListener('click', () => activateAftercareTab(tab)));
+        aftercareTablist.addEventListener('keydown', (event) => {
+          const currentIndex = aftercareTabs.indexOf(document.activeElement);
+          if (currentIndex < 0 || !['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = currentIndex;
+          if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % aftercareTabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + aftercareTabs.length) % aftercareTabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = aftercareTabs.length - 1;
+          activateAftercareTab(aftercareTabs[nextIndex], true);
+        });
+
+        const carousel = document.querySelector('.slideshow');
+        const slides = [...carousel.querySelectorAll('.work-slide')];
+        const dots = [...carousel.querySelectorAll('.slide-dot')];
+        const count = carousel.querySelector('.slide-count');
+        let current = 0;
+        let touchStartX = null;
+
+        const showSlide = (next) => {
+          current = (next + slides.length) % slides.length;
+          slides.forEach((slide, index) => {
+            const active = index === current;
+            slide.classList.toggle('is-active', active);
+            slide.setAttribute('aria-hidden', String(!active));
+          });
+          dots.forEach((dot, index) => dot.setAttribute('aria-current', String(index === current)));
+          count.textContent = `${current + 1} of ${slides.length}`;
+        };
+
+        carousel.querySelector('.slide-prev').addEventListener('click', () => showSlide(current - 1));
+        carousel.querySelector('.slide-next').addEventListener('click', () => showSlide(current + 1));
+        dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+
+        carousel.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft') showSlide(current - 1);
+          if (event.key === 'ArrowRight') showSlide(current + 1);
+        });
+
+        carousel.addEventListener('touchstart', (event) => {
+          touchStartX = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (event) => {
+          if (touchStartX === null) return;
+          const distance = event.changedTouches[0].clientX - touchStartX;
+          touchStartX = null;
+          if (Math.abs(distance) < 42) return;
+          showSlide(current + (distance < 0 ? 1 : -1));
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
