@@ -303,6 +303,150 @@
 
       .booking-note strong { color: var(--ink); font-weight: 600; }
 
+      .mailing-list {
+        margin: 27px 0 0;
+        padding: 22px 5px 24px;
+        border-top: 2px solid var(--gold);
+        text-align: center;
+      }
+
+      .mailing-list h2 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.8rem, 12vw, 4.25rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .mailing-list .rule { margin: 13px 0 18px; }
+
+      .mailing-list-copy {
+        max-width: 410px;
+        margin: 0 auto 20px;
+        color: var(--ink);
+        font-size: 1.12rem;
+        line-height: 1.3;
+      }
+
+      .signup-form {
+        max-width: 390px;
+        margin: 0 auto;
+      }
+
+      .signup-field { margin: 0 0 14px; text-align: left; }
+
+      .signup-field label {
+        display: block;
+        margin: 0 0 6px;
+        color: var(--gold);
+        font-family: "Oswald", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .signup-field .optional { letter-spacing: 0.08em; }
+
+      .signup-field input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 14px;
+        background: #ffffff;
+        color: var(--ink);
+        border: 2px solid var(--gold);
+        border-radius: 0;
+        font-family: "Oswald", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 300;
+      }
+
+      .signup-field input:focus {
+        outline: 1px solid var(--red);
+        outline-offset: 2px;
+      }
+
+      .signup-submit { cursor: pointer; width: 100%; }
+
+      .signup-note {
+        margin: 16px auto 0;
+        max-width: 380px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.3;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(35, 29, 22, 0.72);
+      }
+
+      .modal-overlay[hidden] { display: none; }
+
+      .modal {
+        position: relative;
+        width: min(100%, 430px);
+        max-height: 90vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+        padding: 34px 24px 28px;
+        background: var(--paper);
+        border: 2px solid var(--gold);
+        outline: 1px solid var(--gold);
+        outline-offset: 4px;
+        text-align: center;
+      }
+
+      .modal h2 {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.4rem, 10.5vw, 3.4rem);
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .modal .rule { margin: 13px 0 16px; }
+
+      .modal-close {
+        position: absolute;
+        top: 4px;
+        right: 8px;
+        padding: 8px 12px;
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-family: "Oswald", sans-serif;
+        font-size: 2rem;
+        font-weight: 300;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .modal-close:hover { color: var(--red); }
+
+      .modal .signup-form { max-width: 100%; }
+
+      .modal-thanks[hidden] { display: none; }
+
+      .modal-thanks .mailing-list-copy { margin-bottom: 20px; }
+
+      .modal-thanks strong { color: var(--red); }
+
+      body.modal-open { overflow: hidden; }
+
       .about {
         margin: 27px 0 0;
         padding-top: 22px;
@@ -1407,6 +1551,7 @@
         <button class="tab-button" id="tab-reviews" type="button" role="tab" aria-selected="false" aria-controls="panel-reviews" tabindex="-1">Reviews</button>
         <button class="tab-button" id="tab-merch" type="button" role="tab" aria-selected="false" aria-controls="panel-merch" tabindex="-1">Merch</button>
         <button class="tab-button" id="tab-aftercare" type="button" role="tab" aria-selected="false" aria-controls="panel-aftercare" tabindex="-1">Aftercare</button>
+        <button class="tab-button" id="tab-mailing-list" type="button" role="tab" aria-selected="false" aria-controls="panel-mailing-list" tabindex="-1">Mailing List</button>
       </nav>
 
       <div class="tab-panel" id="panel-bookings" role="tabpanel" aria-labelledby="tab-bookings">
@@ -2190,7 +2335,69 @@
         </section>
       </section>
 
+      <section class="mailing-list tab-panel" id="panel-mailing-list" role="tabpanel" aria-labelledby="tab-mailing-list mailing-list-title" hidden>
+        <h2 id="mailing-list-title">Mailing List</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+        <p class="mailing-list-copy">Guest spots, print drops and studio news &mdash; straight to your inbox.</p>
+        <form class="signup-form" action="https://antonyflemming.us16.list-manage.com/subscribe/post?u=3ddde3963bac2b77521081095&amp;id=1b8d0a76cb" method="post" target="_blank">
+          <div class="signup-field">
+            <label for="mce-EMAIL">Email address</label>
+            <input type="email" name="EMAIL" id="mce-EMAIL" required autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="signup-field">
+            <label for="mce-FNAME">First name <span class="optional">(optional)</span></label>
+            <input type="text" name="FNAME" id="mce-FNAME" autocomplete="given-name" placeholder="Your name">
+          </div>
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="text" name="b_name" tabindex="-1" value="">
+            <input type="text" name="b_email" tabindex="-1" value="">
+            <input type="text" name="b_comment" tabindex="-1" value="">
+          </div>
+          <input type="hidden" name="u" value="3ddde3963bac2b77521081095">
+          <input type="hidden" name="id" value="1b8d0a76cb">
+          <button class="primary-action signup-submit" type="submit">Add me to the mailing list</button>
+          <p class="signup-note">Mailchimp will send you a confirmation email &mdash; click it to join. No spam, unsubscribe anytime.</p>
+        </form>
+      </section>
+
       <p class="footer">Calgary, Canada</p>
+
+      <div class="modal-overlay" id="mailing-modal" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mailing-modal-title">
+          <button class="modal-close" id="mailing-modal-close" type="button" aria-label="Close">&times;</button>
+          <h2 id="mailing-modal-title">Join the mailing list</h2>
+          <div class="rule" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+          </div>
+          <div id="mailing-modal-body">
+            <p class="mailing-list-copy">Guest spots, print drops and studio news &mdash; straight to your inbox.</p>
+            <form class="signup-form" id="mailing-modal-form" action="https://antonyflemming.us16.list-manage.com/subscribe/post?u=3ddde3963bac2b77521081095&amp;id=1b8d0a76cb" method="post" target="_blank">
+              <div class="signup-field">
+                <label for="mce-EMAIL-pop">Email address</label>
+                <input type="email" name="EMAIL" id="mce-EMAIL-pop" required autocomplete="email" placeholder="you@example.com">
+              </div>
+              <div class="signup-field">
+                <label for="mce-FNAME-pop">First name <span class="optional">(optional)</span></label>
+                <input type="text" name="FNAME" id="mce-FNAME-pop" autocomplete="given-name" placeholder="Your name">
+              </div>
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_name" tabindex="-1" value="">
+                <input type="text" name="b_email" tabindex="-1" value="">
+                <input type="text" name="b_comment" tabindex="-1" value="">
+              </div>
+              <input type="hidden" name="u" value="3ddde3963bac2b77521081095">
+              <input type="hidden" name="id" value="1b8d0a76cb">
+              <button class="primary-action signup-submit" type="submit">Add me to the mailing list</button>
+            </form>
+          </div>
+          <div class="modal-thanks" id="mailing-modal-thanks" hidden>
+            <p class="mailing-list-copy"><strong>You&rsquo;re in.</strong><br>Check your inbox and click the confirmation email to join the list.</p>
+            <button class="primary-action" id="mailing-modal-done" type="button">Done</button>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script>
@@ -2330,6 +2537,57 @@
           if (Math.abs(distance) < 42) return;
           showSlide(current + (distance < 0 ? 1 : -1));
         }, { passive: true });
+      })();
+    </script>
+    <script>
+      (() => {
+        const overlay = document.getElementById('mailing-modal');
+        if (!overlay) return;
+        const form = document.getElementById('mailing-modal-form');
+        const formWrap = document.getElementById('mailing-modal-body');
+        const thanks = document.getElementById('mailing-modal-thanks');
+        const closeBtn = document.getElementById('mailing-modal-close');
+        const doneBtn = document.getElementById('mailing-modal-done');
+        const emailInput = document.getElementById('mce-EMAIL-pop');
+        const KEY = 'af-mailing-popup';
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+
+        const remember = (value) => {
+          try { localStorage.setItem(KEY, value); } catch (e) { /* storage unavailable */ }
+        };
+
+        const openModal = () => {
+          overlay.hidden = false;
+          document.body.classList.add('modal-open');
+          window.setTimeout(() => emailInput.focus(), 60);
+        };
+
+        const closeModal = (subscribed) => {
+          overlay.hidden = true;
+          document.body.classList.remove('modal-open');
+          remember(subscribed ? 'done' : String(Date.now()));
+        };
+
+        closeBtn.addEventListener('click', () => closeModal(false));
+        doneBtn.addEventListener('click', () => closeModal(true));
+        overlay.addEventListener('click', (event) => {
+          if (event.target === overlay) closeModal(false);
+        });
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !overlay.hidden) closeModal(false);
+        });
+        form.addEventListener('submit', () => {
+          formWrap.hidden = true;
+          thanks.hidden = false;
+          remember('done');
+        });
+
+        let show = true;
+        try {
+          const seen = localStorage.getItem(KEY);
+          show = !seen || (seen !== 'done' && Date.now() - Number(seen) > THIRTY_DAYS);
+        } catch (e) { show = true; }
+        if (show) window.setTimeout(openModal, 1500);
       })();
     </script>
   </body>
