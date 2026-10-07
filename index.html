@@ -967,8 +967,14 @@
         border-bottom: 1px solid var(--gold);
       }
 
-      .painting-art-link {
+      button.painting-art-link {
         display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        text-align: left;
       }
 
       .painting-art-link .painting-art {
@@ -979,6 +985,58 @@
       .painting-art-link:focus-visible .painting-art {
         opacity: 0.85;
       }
+
+      .lightbox[hidden] { display: none; }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(20, 14, 8, 0.92);
+      }
+
+      .lightbox-figure {
+        margin: 0;
+        max-width: min(92vw, 900px);
+        text-align: center;
+      }
+
+      .lightbox-img {
+        display: block;
+        max-width: 100%;
+        max-height: 78vh;
+        margin: 0 auto;
+        border: 1px solid var(--gold);
+        background: #fff;
+      }
+
+      .lightbox-caption {
+        margin: 12px 0 0;
+        color: var(--cream);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+        padding: 6px 14px;
+        color: var(--cream);
+        background: transparent;
+        border: 1px solid var(--gold);
+        font-size: 1.8rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      body.lightbox-open { overflow: hidden; }
 
       .painting-print {
         margin: 8px 0 0;
@@ -996,7 +1054,7 @@
         display: block;
         width: 100%;
         height: 174px;
-        object-fit: contain;
+        object-fit: cover;
         background: #fff;
         border: 1px solid var(--gold);
       }
@@ -1812,7 +1870,7 @@
         <p class="merch-intro">Original paintings by Antony Flemming. Each piece is one of a kind. Enquire about current availability or talk to him about a commission.</p>
         <div class="painting-list" aria-label="Antony Flemming original paintings">
           <article class="painting-card">
-            <a class="painting-art-link" href="https://sixandgrace.com/products/antony-flemming-provenance" target="_blank" rel="noopener noreferrer" aria-label="Buy a print of Snake and white rat"><img class="painting-art" src="assets/paintings/snake-and-white-rat.jpg" alt="Snake and white rat, original painting by Antony Flemming" loading="lazy" /></a>
+            <button class="painting-art-link" type="button" data-full="assets/paintings/snake-and-white-rat.jpg" aria-label="View Snake and white rat larger"><img class="painting-art" src="assets/paintings/snake-and-white-rat.jpg" alt="Snake and white rat, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Snake and white rat</h3>
               <p class="painting-detail">Predator and prey in a single coil. A study of tension, the breath before everything changes.</p>
@@ -1824,7 +1882,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <a class="painting-art-link" href="https://sixandgrace.com/products/antony-flemming-paon" target="_blank" rel="noopener noreferrer" aria-label="Buy a print of In Bloom"><img class="painting-art" src="assets/paintings/peacock-and-magnolia.jpg" alt="In Bloom, original painting by Antony Flemming" loading="lazy" /></a>
+            <button class="painting-art-link" type="button" data-full="assets/paintings/peacock-and-magnolia.jpg" aria-label="View In Bloom larger"><img class="painting-art" src="assets/paintings/peacock-and-magnolia.jpg" alt="In Bloom, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">In Bloom</h3>
               <p class="painting-detail">Pride set against softness. The peacock shows off and the magnolia keeps it honest.</p>
@@ -1836,7 +1894,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <a class="painting-art-link" href="https://sixandgrace.com/products/antony-flemming" target="_blank" rel="noopener noreferrer" aria-label="Buy a print of The Songbird"><img class="painting-art" src="assets/paintings/blue-bird-and-blossoms.jpg" alt="The Songbird, original painting by Antony Flemming" loading="lazy" /></a>
+            <button class="painting-art-link" type="button" data-full="assets/paintings/blue-bird-and-blossoms.jpg" aria-label="View The Songbird larger"><img class="painting-art" src="assets/paintings/blue-bird-and-blossoms.jpg" alt="The Songbird, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">The Songbird</h3>
               <p class="painting-detail">A small bright moment, painted loose and kept quick, about catching joy before it moves.</p>
@@ -1848,7 +1906,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <a class="painting-art-link" href="https://sixandgrace.com/products/antony-flemming-the-gauntlet" target="_blank" rel="noopener noreferrer" aria-label="Buy a print of Rose, pearls and ornament"><img class="painting-art" src="assets/paintings/rose-pearls-and-ornament.jpg" alt="Rose, pearls and ornament, original painting by Antony Flemming" loading="lazy" /></a>
+            <button class="painting-art-link" type="button" data-full="assets/paintings/rose-pearls-and-ornament.jpg" aria-label="View Rose, pearls and ornament larger"><img class="painting-art" src="assets/paintings/rose-pearls-and-ornament.jpg" alt="Rose, pearls and ornament, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Rose, pearls and ornament</h3>
               <p class="painting-detail">A still life with a little luxury, painted for the love of detail and the patience it takes.</p>
@@ -1860,7 +1918,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <a class="painting-art-link" href="https://sixandgrace.com/products/antony-flemming-the-raven" target="_blank" rel="noopener noreferrer" aria-label="Buy a print of Raven and berries"><img class="painting-art" src="assets/paintings/raven-and-berries.jpg" alt="Raven and berries, original painting by Antony Flemming" loading="lazy" /></a>
+            <button class="painting-art-link" type="button" data-full="assets/paintings/raven-and-berries.jpg" aria-label="View Raven and berries larger"><img class="painting-art" src="assets/paintings/raven-and-berries.jpg" alt="Raven and berries, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Raven and berries</h3>
               <p class="painting-detail">The clever bird at work. A portrait of patience and appetite.</p>
@@ -1872,7 +1930,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <a class="painting-art-link" href="https://sixandgrace.com/products/antony-flemming-the-lady" target="_blank" rel="noopener noreferrer" aria-label="Buy a print of Woman and chrysanthemums"><img class="painting-art" src="assets/paintings/woman-and-chrysanthemums.jpg" alt="Woman and chrysanthemums, original painting by Antony Flemming" loading="lazy" /></a>
+            <button class="painting-art-link" type="button" data-full="assets/paintings/woman-and-chrysanthemums.jpg" aria-label="View Woman and chrysanthemums larger"><img class="painting-art" src="assets/paintings/woman-and-chrysanthemums.jpg" alt="Woman and chrysanthemums, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Woman and chrysanthemums</h3>
               <p class="painting-detail">Grace under pressure, wrapped in flowers and painted large.</p>
@@ -1884,7 +1942,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/swan-and-cygnets.jpg" alt="Swan and cygnets, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/swan-and-cygnets.jpg" aria-label="View Swan and cygnets larger"><img class="painting-art" src="assets/paintings/swan-and-cygnets.jpg" alt="Swan and cygnets, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Swan and cygnets</h3>
               <p class="painting-detail">A quiet family portrait, painted for the calm that comes from watching over your own.</p>
@@ -1895,7 +1953,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/horse-and-chrysanthemums.jpg" alt="Horse and chrysanthemums, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/horse-and-chrysanthemums.jpg" aria-label="View Horse and chrysanthemums larger"><img class="painting-art" src="assets/paintings/horse-and-chrysanthemums.jpg" alt="Horse and chrysanthemums, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Horse and chrysanthemums</h3>
               <p class="painting-detail">Strength dressed in flowers. A nod to the working animal and the beauty it never asks for.</p>
@@ -1906,7 +1964,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/goose-and-roses.jpg" alt="Goose and roses, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/goose-and-roses.jpg" aria-label="View Goose and roses larger"><img class="painting-art" src="assets/paintings/goose-and-roses.jpg" alt="Goose and roses, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Goose and roses</h3>
               <p class="painting-detail">An unlikely pairing. The goose has attitude and the roses could not care less.</p>
@@ -1917,7 +1975,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/bison-and-pink-flowers.jpg" alt="Bison and pink flowers, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/bison-and-pink-flowers.jpg" aria-label="View Bison and pink flowers larger"><img class="painting-art" src="assets/paintings/bison-and-pink-flowers.jpg" alt="Bison and pink flowers, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Bison and pink flowers</h3>
               <p class="painting-detail">The prairies in one frame. Heavy animal, soft flowers, a love letter to the West.</p>
@@ -1928,7 +1986,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/scorpion-and-butterfly.jpg" alt="Scorpion and butterfly, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/scorpion-and-butterfly.jpg" aria-label="View Scorpion and butterfly larger"><img class="painting-art" src="assets/paintings/scorpion-and-butterfly.jpg" alt="Scorpion and butterfly, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Scorpion and butterfly</h3>
               <p class="painting-detail">Danger and delicacy sharing the same air. Both can be beautiful.</p>
@@ -1939,7 +1997,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/skull-snake-and-rose.jpg" alt="Skull, snake and rose, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/skull-snake-and-rose.jpg" aria-label="View Skull, snake and rose larger"><img class="painting-art" src="assets/paintings/skull-snake-and-rose.jpg" alt="Skull, snake and rose, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Skull, snake and rose</h3>
               <p class="painting-detail">Mortality with its decorations. The classic trio, rendered in the bold graphic tradition of tattooing.</p>
@@ -1950,7 +2008,7 @@
             </a>
           </article>
           <article class="painting-card">
-            <img class="painting-art" src="assets/paintings/roses-and-air-jordan.jpg" alt="Roses and Air Jordan, original painting by Antony Flemming" loading="lazy" />
+            <button class="painting-art-link" type="button" data-full="assets/paintings/roses-and-air-jordan.jpg" aria-label="View Roses and Air Jordan larger"><img class="painting-art" src="assets/paintings/roses-and-air-jordan.jpg" alt="Roses and Air Jordan, original painting by Antony Flemming" loading="lazy" /></button>
             <div class="painting-info">
               <h3 class="painting-name">Roses and Air Jordan</h3>
               <p class="painting-detail">Street culture meets the flower shop. Painted because both belong in the gallery.</p>
@@ -2870,5 +2928,43 @@
         if (show) window.setTimeout(openModal, 1500);
       })();
     </script>
-  </body>
+  
+    <div class="lightbox" id="painting-lightbox" hidden>
+      <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
+      <figure class="lightbox-figure">
+        <img class="lightbox-img" src="" alt="" />
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+    <script>
+      (() => {
+        const lb = document.getElementById('painting-lightbox');
+        if (!lb) return;
+        const lbImg = lb.querySelector('.lightbox-img');
+        const lbCap = lb.querySelector('.lightbox-caption');
+        const closeLb = () => {
+          lb.hidden = true;
+          lbImg.removeAttribute('src');
+          document.body.classList.remove('lightbox-open');
+        };
+        document.querySelectorAll('button.painting-art-link').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const img = btn.querySelector('img');
+            lbImg.src = btn.getAttribute('data-full');
+            lbImg.alt = img.getAttribute('alt') || '';
+            const card = btn.closest('.painting-card');
+            const title = card ? card.querySelector('.painting-name') : null;
+            lbCap.textContent = title ? title.textContent : '';
+            lb.hidden = false;
+            document.body.classList.add('lightbox-open');
+          });
+        });
+        lb.querySelector('.lightbox-close').addEventListener('click', closeLb);
+        lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !lb.hidden) closeLb();
+        });
+      })();
+    </script>
+</body>
 </html>
