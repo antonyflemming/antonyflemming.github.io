@@ -925,7 +925,8 @@
 
       .reviews,
       .merch,
-      .aftercare {
+      .aftercare,
+      .paintings {
         margin: 27px 0 0;
         padding-top: 22px;
         border-top: 2px solid var(--gold);
@@ -933,7 +934,8 @@
 
       .reviews h2,
       .merch h2,
-      .aftercare h2 {
+      .aftercare h2,
+      .paintings h2 {
         margin: 0;
         color: var(--red);
         font-family: "Bebas Neue", sans-serif;
@@ -947,7 +949,76 @@
 
       .reviews .rule,
       .merch .rule,
-      .aftercare .rule { margin: 13px 0 12px; }
+      .aftercare .rule,
+      .paintings .rule { margin: 13px 0 12px; }
+
+      .painting-list {
+        display: grid;
+        border-top: 2px solid var(--gold);
+      }
+
+      .painting-card {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 124px minmax(0, 1fr);
+        column-gap: 18px;
+        align-items: start;
+        padding: 18px 5px 20px;
+        border-bottom: 1px solid var(--gold);
+      }
+
+      .painting-art {
+        display: block;
+        width: 100%;
+        height: 174px;
+        object-fit: contain;
+        background: #fff;
+        border: 1px solid var(--gold);
+      }
+
+      .painting-info { min-width: 0; }
+
+      .painting-name {
+        margin: 0;
+        color: var(--red);
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.7rem, 7vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .painting-detail {
+        margin: 9px 0 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+        line-height: 1.3;
+      }
+
+      .painting-enquire {
+        grid-column: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        min-height: 45px;
+        margin-top: 14px;
+        padding: 10px 12px;
+        color: var(--button-ink);
+        background: var(--red);
+        border: 1px solid var(--gold);
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 150ms ease;
+      }
+
+      .painting-enquire:hover { background: var(--red-deep); }
+      .painting-enquire svg { width: 18px; height: 18px; flex: 0 0 auto; }
 
       .review-summary {
         display: grid;
@@ -1507,6 +1578,8 @@
         .booking { padding-left: 0; padding-right: 0; }
         .print-card { grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; }
         .print-art { height: 152px; }
+        .painting-card { grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; }
+        .painting-art { height: 152px; }
         .merch-product-list { grid-template-columns: 1fr; }
         .merch-product { min-height: 96px; padding-left: 5px; padding-right: 5px; }
         .merch-product:nth-child(odd) { border-right: 0; }
@@ -1546,6 +1619,7 @@
         <button class="tab-button" id="tab-bookings" type="button" role="tab" aria-selected="true" aria-controls="panel-bookings">Bookings</button>
         <button class="tab-button" id="tab-about" type="button" role="tab" aria-selected="false" aria-controls="panel-about" tabindex="-1">About</button>
         <button class="tab-button" id="tab-portfolio" type="button" role="tab" aria-selected="false" aria-controls="panel-portfolio" tabindex="-1">Portfolio</button>
+        <button class="tab-button" id="tab-paintings" type="button" role="tab" aria-selected="false" aria-controls="panel-paintings" tabindex="-1">Paintings</button>
         <button class="tab-button" id="tab-film" type="button" role="tab" aria-selected="false" aria-controls="panel-film" tabindex="-1">Film</button>
         <button class="tab-button" id="tab-press" type="button" role="tab" aria-selected="false" aria-controls="panel-press" tabindex="-1">Press</button>
         <button class="tab-button" id="tab-reviews" type="button" role="tab" aria-selected="false" aria-controls="panel-reviews" tabindex="-1">Reviews</button>
@@ -1702,6 +1776,159 @@
             </button>
           </div>
           <p class="slide-count" aria-live="polite">1 of 15</p>
+        </div>
+      </section>
+
+      <section class="paintings tab-panel" id="panel-paintings" role="tabpanel" aria-labelledby="tab-paintings paintings-title" hidden>
+        <h2 id="paintings-title">Paintings</h2>
+        <div class="rule" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.48 6.85 1.18 9.85 7.5 11-6.32 1.15-7.02 4.15-7.5 11-.48-6.85-1.18-9.85-7.5-11 6.32-1.15 7.02-4.15 7.5-11Z"/></svg>
+        </div>
+        <p class="merch-intro">Original paintings by Antony Flemming. Each piece is one of a kind. Enquire about current availability or talk to him about a commission.</p>
+        <div class="painting-list" aria-label="Antony Flemming original paintings">
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/snake-and-white-rat.jpg" alt="Snake and white rat, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Snake and white rat</h3>
+              <p class="painting-detail">Predator and prey in a single coil. A study of tension, the breath before everything changes.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Snake%20and%20white%20rat">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/peacock-and-magnolia.jpg" alt="Peacock and magnolia, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Peacock and magnolia</h3>
+              <p class="painting-detail">Pride set against softness. The peacock shows off and the magnolia keeps it honest.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Peacock%20and%20magnolia">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/swan-and-cygnets.jpg" alt="Swan and cygnets, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Swan and cygnets</h3>
+              <p class="painting-detail">A quiet family portrait, painted for the calm that comes from watching over your own.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Swan%20and%20cygnets">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/horse-and-chrysanthemums.jpg" alt="Horse and chrysanthemums, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Horse and chrysanthemums</h3>
+              <p class="painting-detail">Strength dressed in flowers. A nod to the working animal and the beauty it never asks for.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Horse%20and%20chrysanthemums">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/blue-bird-and-blossoms.jpg" alt="Blue bird and blossoms, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Blue bird and blossoms</h3>
+              <p class="painting-detail">A small bright moment, painted loose and kept quick, about catching joy before it moves.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Blue%20bird%20and%20blossoms">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/goose-and-roses.jpg" alt="Goose and roses, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Goose and roses</h3>
+              <p class="painting-detail">An unlikely pairing. The goose has attitude and the roses could not care less.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Goose%20and%20roses">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/bison-and-pink-flowers.jpg" alt="Bison and pink flowers, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Bison and pink flowers</h3>
+              <p class="painting-detail">The prairies in one frame. Heavy animal, soft flowers, a love letter to the West.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Bison%20and%20pink%20flowers">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/scorpion-and-butterfly.jpg" alt="Scorpion and butterfly, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Scorpion and butterfly</h3>
+              <p class="painting-detail">Danger and delicacy sharing the same air. Both can be beautiful.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Scorpion%20and%20butterfly">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/skull-snake-and-rose.jpg" alt="Skull, snake and rose, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Skull, snake and rose</h3>
+              <p class="painting-detail">Mortality with its decorations. The classic trio, rendered in the bold graphic tradition of tattooing.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Skull%2C%20snake%20and%20rose">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/rose-pearls-and-ornament.jpg" alt="Rose, pearls and ornament, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Rose, pearls and ornament</h3>
+              <p class="painting-detail">A still life with a little luxury, painted for the love of detail and the patience it takes.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Rose%2C%20pearls%20and%20ornament">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/roses-and-air-jordan.jpg" alt="Roses and Air Jordan, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Roses and Air Jordan</h3>
+              <p class="painting-detail">Street culture meets the flower shop. Painted because both belong in the gallery.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Roses%20and%20Air%20Jordan">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/raven-and-berries.jpg" alt="Raven and berries, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Raven and berries</h3>
+              <p class="painting-detail">The clever bird at work. A portrait of patience and appetite.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Raven%20and%20berries">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
+          <article class="painting-card">
+            <img class="painting-art" src="assets/paintings/woman-and-chrysanthemums.jpg" alt="Woman and chrysanthemums, original painting by Antony Flemming" loading="lazy" />
+            <div class="painting-info">
+              <h3 class="painting-name">Woman and chrysanthemums</h3>
+              <p class="painting-detail">Grace under pressure, wrapped in flowers and painted large.</p>
+            </div>
+            <a class="painting-enquire" href="mailto:antonyflemmingtattoo@gmail.com?subject=Painting%20enquiry%3A%20Woman%20and%20chrysanthemums">
+              Enquire
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 7l5 5-5 5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </a>
+          </article>
         </div>
       </section>
 
@@ -2281,26 +2508,26 @@
 
           <section class="care-section" aria-labelledby="second-skin-title">
             <h3 id="second-skin-title">Second Skin bandage</h3>
-            <p>Keep the bandage on for 4–5 days. Some fluid build-up underneath is normal. If it leaks, remove it and follow the standard bandage instructions below.</p>
-            <p>After 4–5 days, remove it gently under warm running water. Stretch the bandage from each side rather than peeling it like a bandaid; this lets the adhesive release without pulling ink from the tattoo.</p>
-            <p>Wash the tattoo with mild, fragrance-free soap and warm water. Once healing is underway, use an unscented, non-greasy lotion such as Aquaphor, Hustle Butter or Burt’s Bees Almond &amp; Milk Hand Cream.</p>
-            <p class="care-warning">Do not use Vaseline.</p>
+            <p>If your tattoo is bandaged with Second Skin you should keep the bandage on for 4-5 days.</p>
+            <p>During this time, it is normal to see some fluid build up beneath the bandage. (If the bandage begins to leak, you must remove the bandage and follow the standard aftercare instructions listed below). After 4-5 days, remove the Second Skin bandage gently under warm running water. To take the bandage off you must stretch from each side rather than peel it off like a Bandaid. When you stretch the bandage it allows the adhesive to come off the skin without disrupting the tattoo and taking any ink with it.</p>
+            <p>Wash the tattoo with a mild, fragrance-free soap and warm water. At this point, your tattoo should be well into the healing process - you may use an unscented, non-greasy lotion (Aquaphor, Hustle Butter or Burt's Bees Almond &amp; Milk Hand Cream) to keep the tattoo moisturized.</p>
+            <p class="care-warning">DO NOT moisturize your tattoo with Vaseline - this does not let the skin and the new tattoo breathe.</p>
           </section>
 
           <section class="care-section" aria-labelledby="standard-bandage-title">
             <h3 id="standard-bandage-title">Standard bandage</h3>
             <ol class="care-steps">
-              <li>Leave the bandage on for 2–3 hours, or as your artist instructs.</li>
-              <li>Wash your hands well before touching your tattoo.</li>
-              <li>Wash with warm water and mild, fragrance-free soap. Gently remove any Vaseline, plasma and excess ink with your fingertips. Do not use anything abrasive.</li>
-              <li>Rinse and pat dry with a disposable paper towel, or let the tattoo air dry.</li>
-              <li>Wash twice a day—morning and night—until fully healed. Don’t over-wash. Regular showering is fine, but don’t submerge the tattoo in baths or swimming pools until it has healed.</li>
-              <li>The tattoo will get flaky, dry and tight over the next few days. Apply fragrance-free, non-greasy lotion 2–3 times daily, using it sparingly and rubbing it in fully. Don’t over-moisturize. Scabs take on the ink’s colour; this doesn’t mean the ink is falling out. Leave them alone—don’t pick or scratch. The tattoo may look dull until healed, which is normal and will pass in a few weeks. Wear loose clothing over the area.</li>
+              <li>Leave the bandage on for 2-3 hours or as instructed by your artist.</li>
+              <li>Wash your hands well with soap before touching your new tattoo.</li>
+              <li>After the bandage is removed, wash your tattoo with warm water and a mild, fragrance-free soap. Remove all existing vaseline, plasma/excess ink with your fingertips gently. Do not use anything abrasive to clean your new tattoo.</li>
+              <li>Rinse and pat dry with a disposable paper towel or let air dry.</li>
+              <li>Wash your tattoo twice a day (morning and night) until your tattoo is completely healed. Do not over-wash. Regular showering is fine. Do not submerge the tattoo for an extended amount of time until it has healed - this includes baths and swimming.</li>
+              <li>Over the next few days the tattoo will become flaky, dry, and tight. Use a fragrance-free, non-greasy lotion (Aquaphor, Hustle Butter or Burt's Bees Almond &amp; Milk Hand Cream) 2-3 times a day sparingly. Rub the lotion in until it is fully absorbed into your skin. Do not over-moisturize. If a scab forms, it will be the color of the ink used. This does not mean the ink is going to fall out. Leave the scabs and let them fall off naturally. Do not pick or scratch the area. The tattoo may appear dull until it has completely healed - this is normal and will go away after a few weeks. Wear loose fitting clothing over the area.</li>
             </ol>
           </section>
 
           <div class="healing-note">
-            <p>Keep your tattoo out of the sun for the first few weeks of healing. Once fully healed, apply a good SPF sunscreen to help prevent fading.</p>
+            <p>Remember to keep your tattoo out of the sun for the first few weeks of healing. When the tattoo is completely healed apply a good SPF sunscreen on the tattoo to prevent fading.</p>
             <p><strong>Enjoy your new tattoo!</strong><br />If you have any questions, do not hesitate to <a href="mailto:antonyflemmingtattoo@gmail.com">email your artist</a>.</p>
           </div>
         </div>
