@@ -166,7 +166,7 @@
         top: 0;
         z-index: 10;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         margin: 0 0 24px;
         background: var(--paper);
         border-bottom: 1px solid var(--gold-soft);
@@ -184,6 +184,8 @@
         font-size: 0.64rem;
         font-weight: 400;
         letter-spacing: 0.055em;
+        line-height: 1.2;
+        text-align: center;
         text-transform: uppercase;
         cursor: pointer;
       }
@@ -206,7 +208,7 @@
         background: var(--gold);
       }
 
-      .tab-button:nth-child(n + 5) { border-top: 1px solid var(--gold-soft); }
+      .tab-button:nth-child(n + 6) { border-top: 1px solid var(--gold-soft); }
       .tab-button:hover { color: var(--red); }
       .tab-panel[hidden] { display: none; }
 
@@ -664,6 +666,40 @@
         letter-spacing: 0.12em;
         text-align: center;
         text-transform: uppercase;
+      }
+
+      .work-marquee {
+        overflow: hidden;
+        margin: 4px -5px 20px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .work-marquee-track {
+        display: flex;
+        width: max-content;
+        animation: work-scroll 55s linear infinite;
+      }
+
+      .work-marquee-track img {
+        display: block;
+        height: 172px;
+        width: auto;
+        margin-right: 6px;
+        object-fit: cover;
+      }
+
+      .work-marquee:hover .work-marquee-track,
+      .work-marquee:active .work-marquee-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes work-scroll {
+        to { transform: translateX(-50%); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .work-marquee-track { animation: none; }
       }
 
       .career-film {
@@ -1650,7 +1686,7 @@
       }
 
       @media (max-width: 520px) {
-        .tab-button { font-size: 0.7rem; letter-spacing: 0.075em; }
+        .tab-button { font-size: 0.62rem; letter-spacing: 0.04em; }
       }
 
       @media (max-width: 420px) {
@@ -1723,6 +1759,31 @@
           </a>
           <p class="booking-note">Please include your <strong>name, phone number, design idea, and placement.</strong></p>
         </section>
+
+        <div class="work-marquee" id="landing-work" role="button" tabindex="0" aria-label="Selected tattoo work. Open the full portfolio.">
+          <div class="work-marquee-track">
+            <img src="assets/portfolio-16.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-17.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-01.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-02.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-03.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-04.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-05.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-06.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-07.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-08.jpg" alt="" loading="lazy" />
+            <img src="assets/portfolio-16.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-17.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-01.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-02.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-03.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-04.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-05.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-06.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-07.jpg" alt="" loading="lazy" aria-hidden="true" />
+            <img src="assets/portfolio-08.jpg" alt="" loading="lazy" aria-hidden="true" />
+          </div>
+        </div>
 
         <nav class="links" aria-label="Antony Flemming links">
         <a class="link-card" href="https://sixandgrace.com" target="_blank" rel="noopener noreferrer">
@@ -1832,6 +1893,12 @@
             <figure class="work-slide" aria-hidden="true">
               <img src="assets/portfolio-15.jpg" alt="Finished tattoo portfolio image 15" loading="lazy" />
             </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-16.jpg" alt="Finished tattoo portfolio image 16" loading="lazy" />
+            </figure>
+            <figure class="work-slide" aria-hidden="true">
+              <img src="assets/portfolio-17.jpg" alt="Finished tattoo portfolio image 17" loading="lazy" />
+            </figure>
           </div>
           <div class="slide-controls">
             <button class="slide-arrow slide-prev" type="button" aria-label="Previous tattoo">
@@ -1853,12 +1920,14 @@
               <button class="slide-dot" type="button" aria-label="Show tattoo 13" aria-current="false"></button>
               <button class="slide-dot" type="button" aria-label="Show tattoo 14" aria-current="false"></button>
               <button class="slide-dot" type="button" aria-label="Show tattoo 15" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 16" aria-current="false"></button>
+              <button class="slide-dot" type="button" aria-label="Show tattoo 17" aria-current="false"></button>
             </div>
             <button class="slide-arrow slide-next" type="button" aria-label="Next tattoo">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8"/></svg>
             </button>
           </div>
-          <p class="slide-count" aria-live="polite">1 of 15</p>
+          <p class="slide-count" aria-live="polite">1 of 17</p>
         </div>
       </section>
 
@@ -2756,8 +2825,25 @@
           if (moveFocus) tab.focus();
         };
 
-        tabs.forEach((tab) => tab.addEventListener('click', () => activateTab(tab)));
-        tablist.addEventListener('keydown', (event) => {
+        tabs.forEach((tab) => tab.addEventListener('click', () => activateTab(tab));
+
+        const landingWork = document.getElementById('landing-work');
+        if (landingWork) {
+          const openPortfolio = () => {
+            const portfolioTab = document.getElementById('tab-portfolio');
+            if (portfolioTab) {
+              activateTab(portfolioTab);
+              portfolioTab.scrollIntoView({ block: 'start' });
+            }
+          };
+          landingWork.addEventListener('click', openPortfolio);
+          landingWork.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openPortfolio();
+            }
+          });
+        }        tablist.addEventListener('keydown', (event) => {
           const currentIndex = tabs.indexOf(document.activeElement);
           if (currentIndex < 0) return;
 
